@@ -1,47 +1,41 @@
-<br>
-  <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
-          <div class="row w-100">
-            <div class="col-lg-4 mx-auto">
-              <div class="auto-form-wrapper" style="border-radius: 15px; padding: 20px; background-color: #e3f2fd">
-                <h1>Sign up!</h1>
-
-                <% if @user.errors.any? %>
-                  <div class="alert alert-danger">
-                    <ol>
-                      <% @user.errors.full_messages.each do |msg| %>
-                        <li><%= msg %></li>
-                      <% end %>
-                    </ol>
-                  </div>  
-                <% end %>
-
-                <p>
-                <%= form_for @user do |f| %>
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+      <div class="row w-100">
+        <div class="col-lg-4 mx-auto">
+          <div class="auto-form-wrapper" style="border-radius: 15px; padding: 20px; background-color: #e3f2fd">
+            <h1>Sign up!</h1>
+            <% if @user.errors.any? %>
+              <div class="alert alert-danger">
+                <ol>
+                  <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ol>
+              </div>
+            <% end %>
+            <p>
+              <%= form_for @user do |f| %>
                 <p>
                   <%= f.label :name %>
                   <%= f.text_field :name, :class => 'form-control'  %>
-                  </p>
-                  <%= f.label :email %>
-                  <%= f.email_field :email, :class => 'form-control'  %>
-                </p> 
-                <p>
-                  <%= f.label :password %>
-                  <%= f.password_field :password, :class => 'form-control'  %>
-                  </p>
-                  <p>
-                <%= f.label :password_confirmation, 'Confirm password' %>
-                  <%= f.password_field :password_confirmation, :class => 'form-control' %>
                 </p>
-
-                  <%= f.submit "Sign up!", :class => 'btn btn-info' %>
-                <% end %>
-
-                  </div>
-                </div>
-              </div>
-            </div>
+                <%= f.label :email %>
+                <%= f.email_field :email, :class => 'form-control'  %>
+              </p>
+              <p>
+                <%= f.label :password %>
+                <%= f.password_field :password, :class => 'form-control'  %>
+              </p>
+              <p>
+                <%= f.label :password_confirmation, 'Confirm password' %>
+                <%= f.password_field :password_confirmation, :class => 'form-control' %>
+              </p>
+              <%= f.submit "Sign up!", :class => 'btn btn-info' %>
+            <% end %>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>

@@ -1,34 +1,27 @@
 <p id="notice"><%= notice %></p>
-
 <div class='container container-table' style="max-width: 50em;">
-<p>
-  <strong>Title:</strong>
-  <%= @snippet.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @snippet.description %>
-</p>
-
-<p>  
-  <strong>Code block:</strong>
-  <div class="container w-60">
-  <pre style="border-radius: 15px;"><code class="language-js" style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
-  </div>
-</p>
-
-<p>
-  <strong>Pinned:</strong>
-  <%= @snippet.pinned %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @snippet.position %>
-</p>
-
-
-<%= link_to 'Edit', edit_snippet_path(@snippet) %> |
-<%= link_to 'Back', snippets_path %>
+  <p>
+    <strong>Title:</strong>
+    <%= @snippet.title %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= @snippet.description %>
+  </p>
+  <p>
+    <strong>Code block:</strong>
+    <div class="container w-60">
+      <pre style="border-radius: 15px;"><code class="language-js" style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+    </div>
+  </p>
+  <p>
+    <strong>Pinned:</strong>
+    <%= @snippet.pinned %>
+  </p>
+  <p>
+    <strong>Position:</strong>
+    <%= @snippet.position %>
+  </p>
+  <%= link_to 'Edit', edit_snippet_path(@snippet) %> |
+  <%= link_to 'Back', snippets_path %>
 </div>

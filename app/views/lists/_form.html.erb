@@ -1,23 +1,17 @@
-
-<!----------- Lists form --------------->
-
+<!---------------------- Lists form -------------------------->
 <%= form_for @list do |form| %>
-
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
   <div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
   </div>
-
   <div class="field">
     <%= form.label :position %>
     <%= form.number_field :position %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
