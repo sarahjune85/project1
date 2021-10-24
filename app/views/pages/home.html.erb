@@ -1,0 +1,38 @@
+<h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
+<p>Overcome coding obstacles and record your kills.</p>
+<br>
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="nav justify-content-end"><h2 style="padding-right: 20px;"><%= @current_user.name %>'s boards</h2></div>
+<br>
+  <div class="container d-inline-flex">
+    <div class="row">
+    <% @current_user.boards.each do |board| %>   
+        <div class="col-sm">
+          <div class="card text-dark bg-light mb-3" style="width: 18rem; height: 19rem;"> 
+            <div class="card-header h3"><%= board.name %></div>
+              <div class="card-body flex-column">          
+                <p>Board ID: <%= board.id %></p>
+                
+                  <%= image_tag board.image, :style =>"max-width: 200px; height: 90px;" if board.image.present? %>
+                  <br>
+                  <br>
+                  <p><%= board.description.truncate(35) %></p>
+                  </div>
+                  <div class="mt-auto" style="margin: 10px;">
+                  <%= link_to 'Show board', board %>
+                  <%= link_to 'Edit', edit_board_path(board) %>
+                  <%= link_to 'Delete board', board, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' } %>
+                  </div>
+                          
+          </div>
+        </div>        
+    <% end %>
+    </div>  
+  </div>     
+
+  

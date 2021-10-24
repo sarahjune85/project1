@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Snippets for <%= @list %></h1> <!-- fixme -->
+
+
+<div class="container d-inline-flex">
+    <div class="row">
+    <% @current_user.lists.each do |list| %> 
+      
+      <%= list.name%>
+
+      <% list.snippets.each do |snippet| %>
+
+        <div class="col-sm">
+          <div class="card text-dark bg-light mb-3" style="width: 18rem;"> 
+            <div class="card-header"><%= snippet.title %>
+              <div class="card-body">          
+                <p>Snip ID: <%= snippet.id %></p>
+                 <p>List id: <%= snippet.list_id%></p>
+                 <p>Description: <%= snippet.description %></p>
+                 <p>Code block: <%= snippet.code_block %></p>
+                 <p>Pinned? <%= snippet.pinned %></p>
+                 <p>Position: <%= snippet.position %></p>
+                <%= link_to 'Show', snippet %>
+                <%= link_to 'Edit', edit_snippet_path(snippet) %>
+                <%= link_to 'Destroy', snippet, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' } %>
+              </div>
+            </div>
+          </div>
+        </div>      
+         <% end %>  
+    <% end %>
+    </div>  
+  </div>     
+
+
+
+
+<%= link_to 'New Snippet', new_snippet_path %>
+
+<!-- PINNED LOGIC -->
+    <% @current_user.snippets.each do |snip| %>
+       <p>
+       <% if snip.pinned? %>
+        <%= link_to snip.title, snip %>     
+        <% end%>   
+      </p>
+    <% end %>

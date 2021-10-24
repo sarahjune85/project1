@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codeblobs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'prism', media: 'all' %>
+    <%= javascript_pack_tag "prism" %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_include_tag "application", defer: true %>
+
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  </head>
+
+  <body style="padding-bottom: 70px; background-color: #bde0ff; ">
+    <nav class="navbar navbar-light" style="background-color: #bde0ff;">
+      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 2em;">codeTears 💧 <h5 style="display: inline;">Try not to cry. <small class="text-muted">Cry a lot.</small></h5></div>
+        <ul class="nav justify-content-end">
+
+            <% if @current_user.present? %>
+          <!-- if user logged in, show log out by making session#destoy request from routes -->
+              <li class="nav-item">
+                <%= link_to 'Home', root_path, :class => 'nav-link active' %>
+              </li>
+              <li class="nav-item"> 
+                <%= link_to "New Board (Working)", new_board_path, :class => 'nav-link active'  %>
+              </li> 
+
+              <li class="nav-item"> 
+                <%= link_to "New Snippet (Debug)", new_snippet_path, :class => 'nav-link active'  %>
+              </li> 
+              <li class="nav-item"> 
+                <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link active' %>
+              </li> 
+              <li class="nav-item"> 
+                <%= link_to "Log out #{ @current_user.name }", login_path, :method => 'delete', :class => 'nav-link active'  %>
+              </li> 
+          
+            <% else %>
+              <li class="nav-item"> 
+                <%= link_to 'Sign up', new_user_path, :class => 'nav-link active' %>
+                </li> 
+              <li class="nav-item"> 
+                <%= link_to 'Sign in', login_path, :class => 'nav-link active' %>
+              </li> 
+            <% end %>
+        </ul> 
+    </nav>
+    <br>
+      <div class='container container-table rounded-lg' style="max-width: 990px; background-color: #f1f4f6; border-radius: 15px; padding: 25px 15px;">
+          <%= yield %>
+      </div>   
+        
+      <footer>
+        <div class="d-flex justify-content-center fixed-bottom">
+          <div class="container">
+            <div class="row text-center">
+              <div class="copyright_text">
+                <p>Copyright <small>&#9400; <a href="https://spinditty.com/playlists/Songs-About-Crying-and-Tears"> 2021</a></p>                    
+              </div>
+            </div>
+          </div>
+        </div>        
+      </footer>
+  </body>    
+</html>
