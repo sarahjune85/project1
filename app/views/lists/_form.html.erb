@@ -1,5 +1,5 @@
 <!---------------------- Lists form -------------------------->
-<%= form_for @list do |form| %>
+<%= form_for [@board, @list] do |form| %>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>

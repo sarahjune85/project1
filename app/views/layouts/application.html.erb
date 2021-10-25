@@ -15,17 +15,17 @@
   </head>
   <body style="padding-bottom: 70px; background-color: #bde0ff; ">
     <nav class="navbar navbar-light" style="background-color: #bde0ff;">
-      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 2em;">codeTears 💧 
-        <h5 style="display: inline;">Try not to cry. <small class="text-muted">Cry a lot.</small></h5>
+      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 3vh;">codeTears 💧 
+        <h5 style="display: inline;  font-size: calc(10% + 1vw);">Try not to cry. <small class="text-muted">Cry a lot.</small></h5>
       </div>
-      <ul class="nav justify-content-end">
+      <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px;">
         <% if @current_user.present? %>
           <!-- if user logged in, show log out by making session#destoy request from routes -->
           <li class="nav-item">
             <%= link_to 'Home', root_path, :class => 'nav-link active' %>
           </li>
           <li class="nav-item">
-            <%= link_to "New Board (Working)", new_board_path, :class => 'nav-link active'  %>
+            <%= link_to "New Board", new_board_path, :class => 'nav-link active'  %>
           </li>
           <li class="nav-item">
             <%= link_to "New Snippet (Debug)", new_snippet_path, :class => 'nav-link active'  %>

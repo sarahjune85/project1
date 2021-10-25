@@ -5,7 +5,8 @@ class BoardsController < ApplicationController
   # GET /boards/:id - BoardsController#show
   def show
     set_board
-    @lists = List.find_by(params[:board_id]) 
+    # @lists = List.find_by(params[:board_id]) 
+    @list = List.find_by(params[:list_id]) 
     @user = @board.user
   end
 
@@ -26,7 +27,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if newboard.save
-        format.html { redirect_to root_path, notice: "#{newboard.name} Board was successfully created." }
+        format.html { redirect_to root_path, notice: "#{newboard.name} board was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

@@ -10,11 +10,10 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
-  # boards/:id/lists/:id
+  # boards/:id/lists/:id??
   resources :boards, only: [:show, :new, :edit, :create, :update, :destroy] do
-    resources :lists, only: [:show, :new, :edit, :create, :update, :destroy]       
+    resources :lists, only: [:show, :new, :edit, :create, :update, :destroy]
   end
   
   resources :snippets, only: [:show, :new, :edit, :create, :update, :destroy]
-
 end

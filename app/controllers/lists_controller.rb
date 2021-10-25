@@ -31,7 +31,7 @@ class ListsController < ApplicationController
     set_board
     respond_to do |format|
       if @list.save
-        format.html { redirect_to board_lists_path, notice: "List was successfully created." }
+        format.html { redirect_to board_path(@board.id), notice: "#{@list.name} list was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -42,7 +42,7 @@ class ListsController < ApplicationController
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: "List was successfully updated." }
+        format.html { redirect_to @list, notice: "#{@list.name} list was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -51,9 +51,12 @@ class ListsController < ApplicationController
 
   # DELETE /lists/1  - WORKING!!!!!!!!!!!
   def destroy
-    @list.destroy
+    list = List.find(params[:id])
+    name = list.name
+    list.destroy
+
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "List was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "#{name} list was successfully destroyed." }
     end
   end
 

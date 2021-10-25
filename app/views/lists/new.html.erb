@@ -1,4 +1,5 @@
 <!-------------------------Lists#New----------------------------->
 <h1>New List</h1>
-<%= render 'form', list: @list %>
-<%= link_to 'Back', board_lists_path %>
+<%# new_board_list_path %>
+<%= render 'form', :locals => { :board_id => @board.id, :list => @list } %>
+<%= link_to 'Back', board_path(@board.id) %>

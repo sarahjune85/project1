@@ -12,5 +12,8 @@
   <strong>Position:</strong>
   <%= @list.position %>
 </p>
-<%= link_to 'Edit', edit_list_path(@list) %> |
-<%= link_to 'Back', lists_path %>
+<h1>New Snippet</h1>
+<%# <%= render 'form', snippet: @snippet %>
+<%= link_to 'New Snippet', new_snippet_path(@list.id) %> |
+<%# <%= link_to 'Edit', edit_board_list_path(@list) %> | 
+<%= link_to 'Back', @board %>
