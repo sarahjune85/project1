@@ -20,7 +20,7 @@
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
               <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn btn-info" %>
               <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn btn-info"  %>
-              <%= link_to 'Delete', [:board, list], method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn btn-info"  %>
+              <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn btn-info"  %>
             </div>
           </div>
         </div>

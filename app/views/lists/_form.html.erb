@@ -1,18 +1,23 @@
 <!---------------------- Lists form -------------------------->
-<%= form_for [@board, @list] do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-  <div class="field">
-    <%= form.label :position %>
-    <%= form.number_field :position %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<div class="form-group">
+  <%= form_for [@board, @list] do |form| %>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control'  %>
+    </div>
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_area :description, size: "60x2", :class => 'form-control' %>
+    </div>
+    <div class="field">
+      <%= form.label :position %>
+      <%= form.number_field :position, :class => 'form-control'  %>
+    </div>
+    <p>
+      <div class="actions">
+        <%= form.submit 'Create/update list', :class => 'btn btn-info'%>
+      </div>
+    </p>
+  <% end %>
+</div>
+<!---------------------- End lists form -------------------------->

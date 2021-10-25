@@ -27,7 +27,7 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if newboard.save
-        format.html { redirect_to root_path, notice: "#{newboard.name} board was successfully created." }
+        format.html { redirect_to dashboard_path, notice: "#{newboard.name} board was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -39,7 +39,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to root_path, notice: "#{@board.name} board was successfully updated." }
+        format.html { redirect_to dashboard_path, notice: "#{@board.name} board was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -52,7 +52,7 @@ class BoardsController < ApplicationController
     name = board.name
     board.destroy
     
-    redirect_to root_path, notice: "#{name} board was successfully destroyed."
+    redirect_to dashboard_path, notice: "#{name} board was successfully destroyed."
     
   end
 

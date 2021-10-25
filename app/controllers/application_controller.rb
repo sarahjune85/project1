@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
 
   # method to check for login
   def check_for_login
-    redirect_to login_path unless @current_user.present?
+    unless @current_user.present?
+      flash[:error] = "You must be logged in"
+    redirect_to login_path # unless @current_user.present?
+    end
   end
 
   def check_for_admin

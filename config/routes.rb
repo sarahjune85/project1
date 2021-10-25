@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root :to => 'pages#home'
+  root :to => 'session#new' # login page
+  get '/dashboard' => 'pages#home' # user dashboard after login
+
   resources :users, :only => [:index, :new, :create]
   get 'users/new'
   get 'pages/home'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Codeblobs</title>
+    <title>codeTears</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
@@ -15,14 +15,12 @@
   </head>
   <body style="padding-bottom: 70px; background-color: #bde0ff; ">
     <nav class="navbar navbar-light" style="background-color: #bde0ff;">
-      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 3vh;">codeTears 💧 
-        <h5 style="display: inline;  font-size: calc(10% + 1vw);">Try not to cry. <small class="text-muted">Cry a lot.</small></h5>
-      </div>
+      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 3vh;">codeTears 💧</div>
       <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px;">
         <% if @current_user.present? %>
           <!-- if user logged in, show log out by making session#destoy request from routes -->
           <li class="nav-item">
-            <%= link_to 'Home', root_path, :class => 'nav-link active' %>
+            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link active' %>
           </li>
           <li class="nav-item">
             <%= link_to "New Board", new_board_path, :class => 'nav-link active'  %>
