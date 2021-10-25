@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
 <div class='container container-table' style="max-width: 50em;">
   <p>
     <strong>Title:</strong>
@@ -11,7 +15,7 @@
   <p>
     <strong>Code block:</strong>
     <div class="container w-60">
-      <pre style="border-radius: 15px;"><code class="language-js" style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+      <pre style="border-radius: 15px;"><code style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
     </div>
   </p>
   <p>
@@ -22,6 +26,6 @@
     <strong>Position:</strong>
     <%= @snippet.position %>
   </p>
-  <%= link_to 'Edit', edit_snippet_path(@snippet) %> |
-  <%= link_to 'Back', snippets_path %>
+  <%= link_to 'Edit', edit_list_snippet_path(@list, @snippet.id) %>
+  <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id) %>
 </div>

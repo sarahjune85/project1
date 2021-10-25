@@ -1,9 +1,9 @@
 <h1>Pinned snippets</h1>
 <!-- PINNED LOGIC -->
-<% @current_user.snippets.each do |snip| %>
+<% @snippets.each do |snip| %>
   <p>
     <% if snip.pinned? %>
-      <%= link_to snip.title, snip %>
+      <%= link_to snip.title, list_snippet_path(snip.list_id, snip.id) %>
     <% end%>
   </p>
 <% end %>

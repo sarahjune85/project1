@@ -7,8 +7,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_link_tag 'prism', media: 'all' %>
-    <%= javascript_pack_tag "prism" %>
+    <%# <%= stylesheet_link_tag 'prism', media: 'all' %>
+    <%# <%= javascript_pack_tag "prism" %>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "application", defer: true %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
@@ -24,9 +27,6 @@
           </li>
           <li class="nav-item">
             <%= link_to "New Board", new_board_path, :class => 'nav-link active'  %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "New Snippet (Debug)", new_snippet_path, :class => 'nav-link active'  %>
           </li>
           <li class="nav-item">
             <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link active' %>
@@ -59,5 +59,8 @@
           </div>
         </div>
       </footer>
+      <script>
+        hljs.highlightAll();
+      </script>
     </body>
   </html>

@@ -1,31 +1,35 @@
-<%= form_for @snippet do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, :class => 'form-control' %>
-  </div>
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, :class => 'form-control' %>
-  </div>
-  <div class="field">
-    <%= form.label :code_block %><br>
-    <%= form.text_area :code_block, size: "70x5", :class => 'form-control' %>
-  </div>
-  <div class="field">
-    <%= form.label :position %>
-    <%= form.number_field :position, :class => 'form-control' %>
-  </div>
-  <div class="field">
-    <%= form.label :pinned %>
-    <%= form.check_box :pinned %>
-  </div>
-  <div class="field">
-    <%= form.label :list_id %>
-    <%= form.number_field :list_id, :class => 'form-control' %>
-  </div>
-  <p>
-    <div class="actions">
-      <%= form.submit 'Create/update snippet', :class => 'btn btn-info' %>
+<!------------------------ Snippet form ---------------------------->
+<div class="form-group">
+  <%= form_for [@list, @snippet] do |form| %>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, :class => 'form-control' %>
     </div>
-  </p>
-<% end %>
+    <div class="field">
+      <%= form.label :description %>
+      <%= form.text_field :description, :class => 'form-control' %>
+    </div>
+    <div class="field">
+      <%= form.label :code_block %><br>
+      <%= form.text_area :code_block, size: "70x5", :class => 'form-control' %>
+    </div>
+    <div class="field">
+      <%= form.label :position %>
+      <%= form.number_field :position, :class => 'form-control' %>
+    </div>
+    <div class="field">
+      <%= form.label :pinned %>
+      <%= form.check_box :pinned %>
+    </div>
+    <%# <div class="field">
+      <%= form.label :list_id %>
+    <%# <%= form.number_field :list_id, :class => 'form-control' %>
+    <%# </div> %>
+    <p>
+      <div class="actions">
+        <%= form.submit 'Create/update snippet', :class => 'btn btn-info' %>
+      </div>
+    </p>
+  <% end %>
+</div>
+<!---------------------- End snippets form -------------------------->

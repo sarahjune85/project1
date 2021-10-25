@@ -1,5 +1,9 @@
 <!-------------------------Lists#Show----------------------------->
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @list.name %>
@@ -12,8 +16,30 @@
   <strong>Position:</strong>
   <%= @list.position %>
 </p>
-<h1>New Snippet</h1>
+<div class="container d-inline-flex">
+  <div class="row">
+    <% @list.snippets.each do |snippet| %>
+      <div class="col-sm">
+        <div class="card text-dark bg-light mb-3" style="width: 18rem; height: 19rem;">
+          <div class="card-header h3"><%= snippet.title %></div>
+          <div class="card-body flex-column">
+            <p>Snippet ID: <%= snippet.id %></p>
+            <p><%= snippet.description.truncate(35) %></p>
+            <div class="container w-60">
+              <pre><code style="border-radius: 15px;"><%= snippet.code_block.truncate(20) %></code></pre>
+            </div>
+          </div>
+          <div class="mt-auto" style="margin: 10px;">
+            <%= link_to 'Show snippet', list_snippet_path(@list, snippet.id) %>
+            <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id) %>
+            <%= link_to 'Delete snippet', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 <%# <%= render 'form', snippet: @snippet %>
-<%= link_to 'New Snippet', new_snippet_path(@list.id) %> |
+<%= link_to 'New Snippet', new_list_snippet_path(@list.id) %>
 <%# <%= link_to 'Edit', edit_board_list_path(@list) %> | 
-<%= link_to 'Back', @board %>
+<%= link_to 'Back to board', board_path(@list.board_id) %>

@@ -15,7 +15,10 @@ Rails.application.routes.draw do
   # boards/:id/lists/:id??
   resources :boards, only: [:show, :new, :edit, :create, :update, :destroy] do
     resources :lists, only: [:show, :new, :edit, :create, :update, :destroy]
+  end  
+
+  resources :lists, only: [:show, :new, :edit, :create, :update, :destroy] do
+    resources :snippets, only: [:show, :new, :edit, :create, :update, :destroy]
   end
   
-  resources :snippets, only: [:show, :new, :edit, :create, :update, :destroy]
 end

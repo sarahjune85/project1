@@ -1,5 +1,4 @@
-class ListsController < ApplicationController
-  # before_action :set_list, only: %i[ show edit update destroy ]
+class ListsController < ApplicationController  # 
   before_action :set_board, only: %i[new create]
 
   # GET /lists - boards/:id/
@@ -10,8 +9,8 @@ class ListsController < ApplicationController
 
   # GET /boards/:board_id/lists/:id
   def show
-    set_board
     set_list # using private callbacks below
+    @board = Board.find_by (params[:list_id])
   end
 
   # GET /boards/:board_id/lists/new
@@ -32,7 +31,7 @@ class ListsController < ApplicationController
     set_board
     respond_to do |format|
       if @list.save
-        format.html { redirect_to board_path(@board.id), notice: "#{@list.name} list was successfully created." }
+        format.html { redirect_to board_path(@board.id), notice: "'#{@list.name}' list was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
