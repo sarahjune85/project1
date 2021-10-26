@@ -21,9 +21,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails'
 # gem 'turbo-rails'
+gem 'bootstrap', '~> 5.1.0'
+gem 'jquery-rails'
 gem 'acts_as_list'
-gem 'cssbundling-rails'
-gem 'jsbundling-rails'
 gem 'rails_12factor'
 
 # Reduces boot times through caching; required in config/boot.rb

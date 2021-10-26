@@ -6,7 +6,10 @@
       <%= form.text_field :name, :class => 'form-control'%>
     </div>
     <div class="field">
-      <%= form.label :image%>
+      <%= form_for @board do |f| %>
+        <%= form.label :image%>
+        <%# <%= f.select :breeder_id, @breeders.pluck(:name, :id), :include_blank => true %> %>
+      <% end %>
       <%= form.text_field :image, :class => 'form-control'%>
     </div>
     <div class="field">
@@ -21,3 +24,13 @@
   <% end %>
 </div>
 <!---------------------- End boards form -------------------------->
+<div style="position:relative">
+  <div id="home-carousel" class="carousel">
+    <div class="carousel-inner">
+      <% get_lang_logos %>
+      <% @images.each do |image| %>
+        <div class="item">
+          <%= image_tag image, :style => 'width: 200px;' %>
+        </div>
+      <% end %>
+    </div>

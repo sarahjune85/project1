@@ -7,8 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%# <%= stylesheet_link_tag 'prism', media: 'all' %>
-    <%# <%= javascript_pack_tag "prism" %>
+    <!-- highlight.js -->
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
@@ -16,36 +15,36 @@
     <%= javascript_include_tag "application", defer: true %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
-  <body style="padding-bottom: 70px; background-color: #bde0ff; ">
-    <nav class="navbar navbar-light" style="background-color: #bde0ff;">
-      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 3vh;">codeTears 💧</div>
+  <body style="padding-bottom: 70px; background-color: #232931; ">
+    <nav class="navbar navbar-light" style="background-color: #393E46;">
+      <div class="navbar-brand ml-auto" style="padding-left: 20px; font-size: 3vh;"><%= link_to 'codeTears 💧', dashboard_path, :style => 'color: white; text-decoration: none;' %></div>
       <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px;">
         <% if @current_user.present? %>
           <!-- if user logged in, show log out by making session#destoy request from routes -->
           <li class="nav-item">
-            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link active' %>
+            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link text-light', :style => 'a { color: white; } ' %>
           </li>
           <li class="nav-item">
-            <%= link_to "New Board", new_board_path, :class => 'nav-link active'  %>
+            <%= link_to "New Board", new_board_path, :class => 'nav-link text-light'  %>
           </li>
           <li class="nav-item">
-            <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link active' %>
+            <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link text-light'%>
           </li>
           <li class="nav-item">
-            <%= link_to "Log out #{ @current_user.name }", login_path, :method => 'delete', :class => 'nav-link active'  %>
+            <%= link_to "Log out #{ @current_user.name }", login_path, :method => 'delete', :class => 'nav-link text-light'  %>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign up', new_user_path, :class => 'nav-link active' %>
+            <%= link_to 'Sign up', new_user_path, :class => 'nav-link text-light' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Sign in', login_path, :class => 'nav-link active' %>
+            <%= link_to 'Sign in', login_path, :class => 'nav-link text-light' %>
           </li>
         <% end %>
       </ul>
     </nav>
     <br>
-    <div class='container container-table rounded-lg' style="max-width: 990px; background-color: #f1f4f6; border-radius: 15px; padding: 25px 15px;">
+    <div class='container container-table' style="width: 990px; background-color: #d9dbdd; border-radius: 15px; padding: 25px 15px;">
       <%= yield %>
     </div>
     <footer>
