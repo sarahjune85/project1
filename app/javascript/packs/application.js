@@ -8,6 +8,4 @@ import Rails from "@rails/ujs";
 
 Rails.start();
 // Turbolinks.start()
-
-// require("packs/dragging");
-// require("@shopify/draggable");
+import "controllers";

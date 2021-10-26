@@ -2,4 +2,7 @@
 
 ## project1
 
-It begins!
+Using:
+
+highlight.js - syntax highlighting
+stimulus.js

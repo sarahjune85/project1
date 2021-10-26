@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
-  before_action :set_board, only: %i[ show edit update destroy ]
   before_action :check_for_login
+  # before_action :set_board, only: %i[ show edit update destroy ]
+
 
   # GET /boards/:id - BoardsController#show
   def show
