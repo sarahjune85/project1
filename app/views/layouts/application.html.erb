@@ -13,26 +13,24 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "application", defer: true %>
-    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <%= favicon_link_tag asset_path('favicon2.ico') %>
   </head>
   <body style="padding-bottom: 70px; background-color: #232931; ">
     <nav class="navbar navbar-light">
       <div class="navbar-brand ml-auto">
         <% if @current_user.present? %>
-          <%= link_to 'codeTears 💧', dashboard_path, :style => 'color: white; text-decoration: none;' %>
+          <%= link_to 'codeTears', dashboard_path, :class => 'tears-logo' %>
+          <%= image_tag "tear.png", :style => "height: 40px; margin-bottom: 10px;" %>
         <% else %>
-          <%= link_to 'codeTears 💧', root_path, :style => 'color: white; text-decoration: none;' %>
+          <%= link_to 'codeTears', root_path, :class => 'tears-logo'%>
+          <%= image_tag "tear.png", :style => "height: 40px; margin-bottom: 10px;" %>
         <% end %>
       </div>
-      <div data-controller="geolocation">
-        <button data-action="click->geolocation#geolocate">Get Location</button>
-        <a data-geolocation-target="link">Allo</a> <!-- might not need this -->
-      </div>
-      <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px;">
+      <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px; margin-bottom: 10px;">
         <% if @current_user.present? %>
           <!-- if user logged in, show log out by making session#destoy request from routes -->
           <li class="nav-item">
-            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link text-light', :style => 'a { color: white; } ' %>
+            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link text-light' %>
           </li>
           <li class="nav-item">
             <%= link_to "New Board", new_board_path, :class => 'nav-link text-light'  %>
@@ -54,22 +52,28 @@
       </ul>
     </nav>
     <br>
-    <div class='container container-table' style="width: 990px; background-color: #d9dbdd; border-radius: 15px; padding: 25px 15px;">
+    <div class='container container-table main-box'>
       <%= yield %>
     </div>
     <footer style="padding-top: 50px;">
       <div class="d-flex justify-content-center">
         <div class="container">
           <div class="row text-center">
-            <div class="copyright_text text-light">
-              <p>Copyright <small>&#9400; <a href="https://spinditty.com/playlists/Songs-About-Crying-and-Tears"> 2021</a></p>
+            <div data-controller="geolocation">
+              <!-- displays lat/lon -->
+              <div class="copyright_text text-light">
+                <p><a href="https://spinditty.com/playlists/Songs-About-Crying-and-Tears" class="text-decoration-none" style="color: white; margin-top: 10px;">Contact Us <small>&#9400;  2021</a></p>
+                </div>
+                <button data-action="geolocation#geolocate" class="btn joker justify-content-start">I know where you live!</button>
+                <p>
+                  <br>
+                  <a data-geolocation-target="link" class="text-light text-decoration-none"></a></p>
               </div>
             </div>
           </div>
-        </div>
-      </footer>
-      <script>
-        hljs.highlightAll();
-      </script>
-    </body>
-  </html>
+        </footer>
+        <script>
+          hljs.highlightAll();
+        </script>
+      </body>
+    </html>

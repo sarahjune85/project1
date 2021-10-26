@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'session#new' # login page
+  root :to => 'pages#home' # login page
   get '/dashboard' => 'pages#home' # user dashboard after login
 
   resources :users, :only => [:index, :new, :create]

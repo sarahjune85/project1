@@ -15,21 +15,20 @@ export default class extends Controller {
         this.success.bind(this),
         this.error.bind(this)
       );
-
-      //let options = {
-      //  enableHighAccuracy: false,
-      //  timeout: 5000,
-      //  maximumAge: 0
-      //}
-      //navigator.geolocation.watchPosition(this.success.bind(this), this.error.bind(this), options)
     }
   }
 
   success(position) {
-    this.linkTarget.textContent = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+    this.linkTarget.textContent = `Latitude: ${position.coords.latitude.toFixed(
+      2
+    )}, Longitude: ${position.coords.longitude.toFixed(2)}`;
+
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    return [latitude, longitude];
   }
 
   error() {
-    this.linkTarget.textContent = "Unable to get your location.";
+    this.linkTarget.textContent = "Uh actually, maybe I don't.";
   }
 }

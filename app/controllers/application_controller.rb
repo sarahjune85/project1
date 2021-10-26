@@ -8,17 +8,15 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil unless @current_user.present? # Log out non-existent users
   end
 
+  private
   # method to check for login
   def check_for_login
-    unless @current_user.present?
-      flash[:error] = "You must be logged in"
-    redirect_to login_path # unless @current_user.present?
-    end
+    redirect_to login_path unless @current_user.present?
   end
 
   def check_for_admin
     # if user logged in && an admin - not enough to just be admin
-    redirect_to login_path unless (@current_user.present? && @current_user.admin?)    
-  
+    redirect_to login_path unless (@current_user.present? && @current_user.admin?)      
   end
 end
+

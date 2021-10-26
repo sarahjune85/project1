@@ -4,5 +4,6 @@
 
 Using:
 
-highlight.js - syntax highlighting
-stimulus.js
+1. bootstrap
+2. highlight.js
+3. stimulus.js

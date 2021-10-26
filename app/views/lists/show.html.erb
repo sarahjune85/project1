@@ -4,42 +4,59 @@
     <%= notice %>
   </div>
 <% end %>
-<p>
-  <strong>Name:</strong>
-  <%= @list.name %>
-</p>
-<p>
-  <strong>Description:</strong>
-  <%= @list.description %>
-</p>
-<p>
-  <strong>Position:</strong>
-  <%= @list.position %>
-</p>
-<div class="container d-inline-flex">
+<div class="container flex-column p-2 top-menu">
   <div class="row">
-    <% @list.snippets.each do |snippet| %>
-      <div class="col-sm">
-        <div class="card text-dark bg-light mb-3" style="width: 18rem; height: 19rem;">
-          <div class="card-header h3"><%= snippet.title %></div>
-          <div class="card-body flex-column">
-            <p>Snippet ID: <%= snippet.id %></p>
-            <p><%= snippet.description.truncate(35) %></p>
-            <div class="container w-60">
-              <pre><code style="border-radius: 15px;"><%= snippet.code_block.truncate(20) %></code></pre>
-            </div>
-          </div>
-          <div class="mt-auto" style="margin: 10px;">
-            <%= link_to 'Show snippet', list_snippet_path(@list, snippet.id) %>
-            <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id) %>
-            <%= link_to 'Delete snippet', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' } %>
-          </div>
+    <div class="col-8" style="padding-left: 30px;">
+      <h3><span class="text-muted">snippets for: </span><%= @list.name %></h3>
+      <p style="font-style: italic;">
+        <%= @list.description %>
+      </p>
+    </div>
+    <div class="col">
+      <h3><span class="text-muted">On board: <%=@board.name %></span></h3>
+      <div class="row mx-auto">
+        <div class="bottom-toolbar">
+          <%= link_to 'New Snippet', new_list_snippet_path(@list.id), :class =>"btn card-links pale-button bottom-toolbar" %>
+          <%= link_to 'Back to board', board_path(@list.board_id), :class =>"btn card-links pale-button bottom-toolbar" %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
-<%# <%= render 'form', snippet: @snippet %>
-<%= link_to 'New Snippet', new_list_snippet_path(@list.id) %>
-<%# <%= link_to 'Edit', edit_board_list_path(@list) %> | 
-<%= link_to 'Back to board', board_path(@list.board_id) %>
+<div class="container flex-column" style="margin-top: 20px;">
+  <% @list.snippets.in_groups_of(3, false).each do |group| %>
+    <div class="row offset-sm-0"  style="margin-right: 0px;">
+      <% group.each do |snippet| %>
+        <div class="col-sm">
+          <div class="card text-dark mb-3">
+            <div class="card-header h3 card-heading text-center"><%= snippet.title.truncate(27) %></div>
+            <div class="card-body flex-column">
+              <p><%= snippet.description.truncate(35) %></p>
+              <div class="container w-60">
+                <pre><code class="mini-code-block"><%= snippet.code_block.truncate(20) %></code></pre>
+              </div>
+              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :short) %></p>
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+              <%= link_to 'Show', list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
+              <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
+              <%= link_to 'Delete', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% (3 - group.length).times.each do |fake_div| %>
+        <div class="col-sm">
+          <div class="card text-dark bg-light mb-3 text-center">
+            <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
+              <br>
+              <br>
+              <br>
+              <p><%= link_to image_tag("tear.png"), new_list_snippet_path(@list.id) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

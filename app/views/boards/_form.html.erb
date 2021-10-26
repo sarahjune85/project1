@@ -6,31 +6,31 @@
       <%= form.text_field :name, :class => 'form-control'%>
     </div>
     <div class="field">
-      <%= form_for @board do |f| %>
-        <%= form.label :image%>
-        <%# <%= f.select :breeder_id, @breeders.pluck(:name, :id), :include_blank => true %> %>
-      <% end %>
-      <%= form.text_field :image, :class => 'form-control'%>
-    </div>
-    <div class="field">
-      <%= form.label :description%>
-      <%= form.text_area :description, size: "70x5", :class => 'form-control' %>
-    </div>
-    <p>
-      <div class="actions">
-        <%= form.submit 'Create/update board', :class => 'btn btn-info' %>
+      <%# <%= form_for @board do |f| %>
+        <%= form.label :image %>
+        <%# <%= f.select :thing, @thing.pluck(:name, :id), :include_blank => true %>
+        <%# <% end %>
+        <%= form.text_field :image, :class => 'form-control'%>
       </div>
-    </p>
-  <% end %>
-</div>
-<!---------------------- End boards form -------------------------->
-<div style="position:relative">
-  <div id="home-carousel" class="carousel">
-    <div class="carousel-inner">
-      <% get_lang_logos %>
-      <% @images.each do |image| %>
-        <div class="item">
-          <%= image_tag image, :style => 'width: 200px;' %>
+      <div class="field">
+        <%= form.label :description%>
+        <%= form.text_area :description, size: "70x5", :class => 'form-control' %>
+      </div>
+      <p>
+        <div class="actions">
+          <%= form.submit 'Create/update board', :class => 'btn btn-info' %>
         </div>
-      <% end %>
-    </div>
+      </p>
+    <% end %>
+  </div>
+  <!---------------------- End boards form -------------------------->
+  <div style="position:relative">
+    <div id="home-carousel" class="carousel">
+      <div class="carousel-inner">
+        <% get_lang_logos %>
+        <% @images.each do |image| %>
+          <div class="item">
+            <%= image_tag image, :style => 'width: 200px;' %>
+          </div>
+        <% end %>
+      </div>

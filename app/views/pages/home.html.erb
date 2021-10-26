@@ -1,25 +1,32 @@
 <!---------------------------pages#home----------------------------->
-<h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
-<p>Overcome coding obstacles and record your kills.</p>
-<br>
-<% if notice.present? %>
-  <div class="alert alert-success">
-    <%= notice %>
+<div class="greeting-container">
+  <div class="greeting-row">
+    <div class="greeting-content-main">
+      <h2 style=""><%= @greeting %></h2>
+    </div>
+    <div class="greeting-content-secondary">
+      <h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
+      <p>Record your code discoveries & victories.</p>
+    </div>
   </div>
-<% end %>
-<div class="nav justify-content-end">
-  <h2 style="padding-right: 20px;"><%= @current_user.name %>'s boards</h2>
 </div>
-<div class="container flex-column p-2"  style="padding-left: 10px;">
+<div class="row mx-auto">
+  <% if notice.present? %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+</div>
+<div class="container flex-column">
   <% @boards.in_groups_of(3, false).each do |group| %>
-    <div class="row offset-sm-0">
+    <div class="row offset-sm-0" style="margin-right: 0px;">
       <% group.each do |board| %>
-        <div class="p-2 col-sm">
-          <div class="card text-dark bg-light mb-3 text-center" style="width: 18rem; height: 19rem;">
+        <div class=" col-sm">
+          <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
             <div class="card-header h3 card-heading"><%= board.name %></div>
             <div class="card-body flex-column">
               <p>Board ID: <%= board.id %></p>
-              <%= image_tag board.image, :style =>"max-width: 200px; height: 90px;" if board.image.present? %>
+              <%= link_to image_tag(board.image, :class => 'dash-item'), board if board.image.present? %>
               <br>
               <br>
               <p><%= board.description.truncate(30) %></p>
@@ -33,9 +40,10 @@
         </div>
       <% end %>
       <% (3 - group.length).times.each do |fake_div| %>
-        <div class="p-2 col-sm">
+        <div class="col-sm">
           <div class="card text-dark bg-light mb-3 text-center" style="width: 18rem; height: 19rem;">
             <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
+              <br>
               <br>
               <br>
               <br>

@@ -52,8 +52,7 @@ class BoardsController < ApplicationController
     name = board.name
     board.destroy
     
-    redirect_to dashboard_path, notice: "#{name} board was successfully destroyed."
-    
+    redirect_to dashboard_path, notice: "#{name} board was successfully destroyed."    
   end
 
   private
