@@ -1,33 +1,35 @@
-<% if notice.present? %>
-  <div class="alert alert-success">
-    <%= notice %>
+<div class='container container-table main-box'>
+  <% if notice.present? %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <span class="h2"><%= @board.name %>, Board: <%= @board.id %></span>
+    </nav>
   </div>
-<% end %>
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="h2"><%= @board.name %>, Board: <%= @board.id %></span>
-  </nav>
-</div>
-<div class="container">
-  <div class="row">
-    <% @board.lists.each do |list| %>
-      <div class="col-sm">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= list.name %></h5>
-            <p class="card-text"><%= list.description %></p>
-            <div class="btn-group btn-group-sm" role="group">
-              <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn btn-info" %>
-              <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn btn-info"  %>
-              <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn btn-info"  %>
+  <div class="container">
+    <div class="row">
+      <% @board.lists.each do |list| %>
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= list.name %></h5>
+              <p class="card-text"><%= list.description %></p>
+              <div class="btn-group btn-group-sm" role="group">
+                <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn btn-info" %>
+                <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn btn-info"  %>
+                <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn btn-info"  %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
-<div class="nav">
-  <!--CREATE A NEW LIST THROUGH BOARD ROUTE -->
-  <%= link_to "New List", new_board_list_path(@board.id), :class => "navbar-brand nav-link active" %>
+  <div class="nav">
+    <!--CREATE A NEW LIST THROUGH BOARD ROUTE -->
+    <%= link_to "New List", new_board_list_path(@board.id), :class => "navbar-brand nav-link active" %>
+  </div>
 </div>

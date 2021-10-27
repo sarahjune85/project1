@@ -1,28 +1,30 @@
-<p id="notice"><%= notice %></p>
-<h1>Lists</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Position</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @current_user.boards.each do |list| %>
+<!------------ Might not be in use - please delete ------------>
+<div class='container container-table main-box' style='background-color: red;'>
+  <p id="notice"><%= notice %></p>
+  <h1>Lists AM I EVEN IN USE????????</h1>
+  <table>
+    <thead>
       <tr>
-        <% list.snippets.each do |snip| %>
-          <td><%= snip.title %></td>
-          <td><%= snip.description %></td>
-          <td><%= snip.position %></td>
-          <td><%= link_to 'Show', list %></td>
-          <td><%= link_to 'Edit', edit_list_path(list) %></td>
-          <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Position</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @current_user.boards.each do |list| %>
+        <tr>
+          <% list.snippets.each do |snip| %>
+            <td><%= snip.title %></td>
+            <td><%= snip.description %></td>
+            <td><%= snip.position %></td>
+            <td><%= link_to 'Show', list %></td>
+            <td><%= link_to 'Edit', edit_list_path(list) %></td>
+            <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New List', new_list_path %>
+    </tbody>
+  </table>
+  <br>
+  <%= link_to 'New List', new_list_path %>

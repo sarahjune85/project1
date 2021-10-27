@@ -1,57 +1,59 @@
 <!---------------------------pages#home----------------------------->
-<div class="greeting-container">
-  <div class="greeting-row">
-    <div class="greeting-content-main">
-      <h2 style=""><%= @greeting %></h2>
-    </div>
-    <div class="greeting-content-secondary">
-      <h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
-      <p>Record your code discoveries & victories.</p>
+<div class='container container-table main-box'>
+  <div class="greeting-container">
+    <div class="greeting-row">
+      <div class="greeting-content-main">
+        <h2 style=""><%= @greeting %></h2>
+      </div>
+      <div class="greeting-content-secondary">
+        <h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
+        <p class="text-muted" style="font-style: italic;">Record your code discoveries & victories.</p>
+      </div>
     </div>
   </div>
-</div>
-<div class="row mx-auto">
-  <% if notice.present? %>
-    <div class="alert alert-success">
-      <%= notice %>
-    </div>
-  <% end %>
-</div>
-<div class="container flex-column">
-  <% @boards.in_groups_of(3, false).each do |group| %>
-    <div class="row offset-sm-0" style="margin-right: 0px;">
-      <% group.each do |board| %>
-        <div class=" col-sm">
-          <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
-            <div class="card-header h3 card-heading"><%= board.name %></div>
-            <div class="card-body flex-column">
-              <p>Board ID: <%= board.id %></p>
-              <%= link_to image_tag(board.image, :class => 'dash-item'), board if board.image.present? %>
-              <br>
-              <br>
-              <p><%= board.description.truncate(30) %></p>
-            </div>
-            <div class="btn-group btn-group-sm" role="group">
-              <%= link_to 'Open', board, :class =>"btn card-links"%>
-              <%= link_to 'Edit', edit_board_path(board), :class =>"btn card-links"%>
-              <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn card-links"%>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <% (3 - group.length).times.each do |fake_div| %>
-        <div class="col-sm">
-          <div class="card text-dark bg-light mb-3 text-center" style="width: 18rem; height: 19rem;">
-            <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
-              <br>
-              <br>
-              <br>
-              <br>
-              <p><%= link_to image_tag("tear.png"), new_board_path %></p>
+  <div class="row mx-auto">
+    <% if notice.present? %>
+      <div class="alert alert-success">
+        <%= notice %>
+      </div>
+    <% end %>
+  </div>
+  <div class="container flex-column">
+    <% @boards.in_groups_of(3, false).each do |group| %>
+      <div class="row offset-sm-0" style="margin-right: 0px;">
+        <% group.each do |board| %>
+          <div class=" col-sm">
+            <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
+              <div class="card-header h3 card-heading"><%= board.name %></div>
+              <div class="card-body flex-column">
+                <p>Board ID: <%= board.id %></p>
+                <%= link_to image_tag(board.image, :class => 'dash-item'), board if board.image.present? %>
+                <br>
+                <br>
+                <p><%= board.description.truncate(30) %></p>
+              </div>
+              <div class="btn-group btn-group-sm" role="group">
+                <%= link_to 'Open', board, :class =>"btn card-links"%>
+                <%= link_to 'Edit', edit_board_path(board), :class =>"btn card-links"%>
+                <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn card-links"%>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+        <% end %>
+        <% (3 - group.length).times.each do |fake_div| %>
+          <div class="col-sm">
+            <div class="card text-dark bg-light mb-3 text-center" style="width: 18rem; height: 19rem;">
+              <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p><%= link_to image_tag("tear.png"), new_board_path %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

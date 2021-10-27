@@ -4,6 +4,7 @@
 
 $mint-color: #4fc8a7;
 $purple-color: rgb(113, 61, 133);
+$main-container: #d9dbdde1;
 
 $a-tags: "a, a:active, a:hover, a:visited";
 $a-tags-hover: "a:active, a:hover";
@@ -60,6 +61,7 @@ $a-tags-hover: "a:active, a:hover";
 
 .main-box {
   width: 990px;
+  margin-top: 30px;
   background-color: #d9dbdd;
   border-radius: 15px;
   padding: 25px 15px 70px;
@@ -80,7 +82,6 @@ $a-tags-hover: "a:active, a:hover";
 }
 
 .greeting-container {
-  width: 800px;
   background-color: rgba(white, 0.3);
   padding-top: 12px;
   border-radius: 15px;
@@ -100,6 +101,8 @@ $a-tags-hover: "a:active, a:hover";
   @include media-breakpoint-up(lg) {
     @include make-col(8);
   }
+
+  padding-top: 15px;
 }
 
 .greeting-content-secondary {
@@ -111,6 +114,11 @@ $a-tags-hover: "a:active, a:hover";
   @include media-breakpoint-up(lg) {
     @include make-col(4);
   }
+
+  h3 {
+    --bs-text-opacity: 1;
+    color: #6c757d94 !important;
+  }
 }
 
 img:hover {
@@ -120,4 +128,64 @@ img:hover {
 .dash-item {
   max-width: 100px;
   height: 90px;
+}
+
+.login-container {
+  position: relative;
+  height: 100%;
+  text-align: center;
+  padding-top: 60px;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    width: 750px;
+  }
+
+  .login-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.login-container .content {
+  margin-bottom: 90px;
+}
+
+.login-container .panel {
+  color: #2d3748;
+}
+
+.panel {
+  max-width: 430px;
+  margin: 0 auto 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  background-color: $main-container;
+  border: 1px solid transparent;
+}
+
+.panel a.panel-footer {
+  text-decoration: none;
+}
+.panel .panel-footer {
+  padding: 20px;
+  display: block;
+  font-size: 17px;
+  color: #4a5568;
+}
+.panel-footer {
+  padding: 10px 15px;
+}
+
+.panel a.panel-footer > span {
+  color: #256a55;
+  text-decoration: none;
+}
+
+.login-button {
+  display: block;
+  width: -webkit-fill-available;
 }
