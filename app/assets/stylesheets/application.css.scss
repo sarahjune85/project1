@@ -53,13 +53,7 @@ $a-tags-hover: "a:active, a:hover";
   font-weight: 400;
 }
 
-.card-header {
-  background-color: $mint-color;
-  color: #fff;
-  border-radius: 20px 20px 0px 0px;
-  font-size: inherit;
-}
-
+/* delete */
 .card-body {
   background-color: #eeeeee;
   color: #232931;
@@ -67,11 +61,6 @@ $a-tags-hover: "a:active, a:hover";
 
 .pale-button {
   background-color: $mint-color;
-}
-
-.mini-code-block {
-  border-radius: 5px;
-  height: 100px;
 }
 
 .tears-logo {
@@ -216,6 +205,27 @@ $a-tags-hover: "a:active, a:hover";
   justify-content: center;
 }
 
+.form-container {
+  background-color: rgba(white, 0.3);
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 67%;
+  border-radius: 15px;
+}
+
+.empty {
+  text-align: center;
+}
+
+.empty-img {
+  width: 400px;
+}
+
+.list-form-box {
+  display: flex;
+  justify-content: center;
+}
+
 .list-box {
   display: flex;
   flex-direction: column;
@@ -229,23 +239,69 @@ $a-tags-hover: "a:active, a:hover";
   font-size: 1rem;
 }
 
-.form-container {
-  background-color: rgba(white, 0.3);
-  margin-top: 1rem;
-  padding: 1rem;
-  width: 67%;
-  border-radius: 15px;
-}
-
-.list-form-box {
+.top-menu-btns {
   display: flex;
-  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0.2rem;
+  flex-direction: column;
 }
 
-.empty {
+/* proper responsive attempt on pinned snippets */
+
+.card-header-mint {
+  background-color: $mint-color;
+  font-size: calc(1rem + 2 * ((100vw - 320px) / 680));
+  color: #fff;
+  border-radius: 9px 9px 0px 0px;
+  padding: 0.5rem 1rem;
   text-align: center;
 }
 
-.empty-img {
-  width: 400px;
+.card-description {
+  background-color: #eeeeeead;
+  padding: 0.5rem 1rem;
+  font-size: calc(0.6rem + 2.9 * ((100vw - 320px) / 680));
+}
+
+.mini-code-block {
+  height: 90px;
+  font-size: calc(0.6rem + 1.5 * ((100vw - 320px) / 680));
+  margin-bottom: -1rem;
+  overflow: hidden;
+}
+
+.card-timestamp {
+  padding-left: 15px;
+  font-size: calc(0.6rem + 1.5 * ((100vw - 320px) / 680));
+}
+
+.grid-card {
+  background-color: #eeeeeed2;
+  color: #232931;
+  // padding: 1rem;
+  height: 14rem;
+  border-radius: 12px;
+}
+
+.grid-cards-parent {
+  padding-top: 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  /* eliminate media queries with one line, a bit iffy */
+  // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (min-width: 700px) {
+  .grid-cards-parent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid-cards-parent {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

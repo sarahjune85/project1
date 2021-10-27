@@ -56,11 +56,16 @@ p {
 s4 = Snippet.create :title => 'CSS Thing 2', :description => 'a cool thing that you should use', :code_block => '#myDiv {
   transform: rotateY(150deg);
 }', :pinned => true, :position => 1
-s5 = Snippet.create :title => 'Ruby Thing 1', :description => 'a cool thing that you should use', :pinned => true, :position => 1
+s5 = Snippet.create :title => 'Ruby Thing 1', :description => 'a cool thing that you should use', :code_block => 'i = 0
+loop do
+  i = i + 1
+  puts i
+  break         # this will cause execution to exit the loop
+end', :pinned => true, :position => 1
 s6 = Snippet.create :title => 'Ruby Thing 2', :description => 'another disaster averted', :code_block => '<%= stylesheet_link_tag "prism", media: "all", "data-turbolinks-track": "reload" %>
 <%= javascript_pack_tag "prism", "data-turbo-track": "reload", defer: true %>
 Rails.application.config.assets.precompile += %w( prism.js prism.css )' ,:pinned => true, :position => 2
-s7 = Snippet.create :title => 'HTML Thing 1', :description => 'a cool thing that you should use', :pinned => true, :position => 2
+s7 = Snippet.create :title => 'HTML Thing 1', :description => 'a cool thing that you should use', :code_block => '<form method="post" action="/gohere">',:pinned => true, :position => 2
 s8 = Snippet.create :title => 'HTML Thing 2', :description => 'another cool thing', :code_block => '<!doctype html> <html> <head>
 <title>TechTerms.com</title></head><body><p>This is an example of a paragraph in HTML.</p></body></html>', :pinned => true, :position => 1
 puts "#{ Snippet.count } Snippets"

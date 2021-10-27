@@ -4,30 +4,50 @@
       <%= notice %>
     </div>
   <% end %>
-  <div class='container container-table' style="max-width: 50em;">
-    <p>
-      <strong>Title:</strong>
-      <%= @snippet.title %>
-    </p>
-    <p>
-      <strong>Description:</strong>
-      <%= @snippet.description %>
-    </p>
-    <p>
-      <strong>Code block:</strong>
-      <div class="container w-60">
-        <pre style="border-radius: 15px;"><code style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+  <div class="container flex-column p-2 top-menu">
+    <div class="row">
+      <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
+        <h3><span class="text-muted">Snippet: </span><%= @snippet.title %></h3>
       </div>
-    </p>
-    <p>
-      <strong>Pinned:</strong>
-      <%= @snippet.pinned %>
-    </p>
-    <p>
-      <strong>Position:</strong>
-      <%= @snippet.position %> <!--TODO: use selector pluck here -->
-    </p>
-    <%= link_to 'Edit', edit_list_snippet_path(@list, @snippet.id) %>
-    <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id) %>
+      <div class="col list-topbar-menu" style="text-align: center;">
+        <h3><span class="text-muted">On list:</span> <%=@list.name %></span></h3>
+      <div class="row mx-auto">
+        <div class="bottom-toolbar">
+          <%= link_to 'Edit', edit_list_snippet_path(@list, @snippet.id), :class =>"btn card-links top-menu-btn bottom-toolbar"  %>
+          <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id), :class =>"btn card-links top-menu-btn bottom-toolbar"  %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+<div class="list-form-box">
+  <div class="form-container">
+    <div class="container-fluid flex-column">
+      <div class="container w-70">
+        <p>
+          <strong>Description:</strong>
+          <%= @snippet.description %>
+        </p>
+        <p>
+          <strong>Code block:</strong>
+          <div class="container w-60">
+            <pre style="border-radius: 15px;"><code style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+          </div>
+        </p>
+        <p>
+          <%= form_for [@list, @snippet] do |form| %>
+            <div class="field">
+              <%# <%= check_box_tag "pinned", @snippet.pinned, true %>
+              <%= form.label :pinned %>
+              <%= form.check_box :pinned %>
+            </div>
+          </p>
+          <%= form.submit 'Save', :class => 'btn card-links pale-button bottom-toolbar' %>
+        <% end %>
+      </p>
+    </p>
+  </div>
+</div>
+</div>
+</div>
 </div>

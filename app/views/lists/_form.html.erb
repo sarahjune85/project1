@@ -7,7 +7,13 @@
 <div class="container-fluid flex-column p-2 top-menu">
   <div class="row">
     <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
-      <h1>New List</h1>
+      <% if @list.id.present? %>
+        <div class="edit-snippet">
+          <h1><span class="text-muted">Editing List:</span> <%=@list.name %></h1>
+        </div>
+      <% else %>
+        <h1>New List</h1>
+      <% end %>
       <p style="font-style: italic;">
         <h3><span class="text-muted">For board:</span> <%=@board.name %></span></h3>
     </p>
@@ -15,8 +21,8 @@
   <div class="col" style="text-align: center; padding-top: 1.6rem;">
     <div class="row mx-auto">
       <div class="bottom-toolbar">
-        <%= link_to 'Back to board', board_path(@board.id), :class =>"btn card-links pale-button bottom-toolbar" %>
-        <%= link_to 'Dashboard', dashboard_path, :class =>"btn card-links pale-button bottom-toolbar" %>
+        <%= link_to 'Back to board', board_path(@board.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+        <%= link_to 'Dashboard', dashboard_path, :class =>"btn card-links top-menu-btn bottom-toolbar" %>
       </div>
     </div>
   </div>
@@ -31,17 +37,21 @@
             <%= form.label :name %>
             <%= form.text_field :name, :maxlength => 40, :class => 'form-control'  %>
           </div>
-          <div class="field">
-            <%= form.label :description %>
-            <%= form.text_area :description, :maxlength => 120, size: "60x2", :class => 'form-control' %>
-          </div>
-          <div class="field">
-            <% if @list.id? %>
-              <%= form.label :position %>
-              <%= form.number_field :position, :class => 'form-control'  %>
-              <%# <%= form.select :position, @list.pluck(:position, :id), :include_blank => true %>
-            <% end %>
-          </div>
+          <p>
+            <div class="field">
+              <%= form.label :description %>
+              <%= form.text_area :description, :maxlength => 120, size: "60x2", :class => 'form-control' %>
+            </div>
+          </p>
+          <p>
+            <div class="field">
+              <% if @list.id? %>
+                <%= form.label :position %>
+                <%= form.number_field :position, :class => 'form-control'  %>
+                <%# <%= form.select :position, @list.pluck(:position, :id), :include_blank => true %>
+              <% end %>
+            </div>
+          </p>
           <p>
             <div class="actions">
               <%= form.submit 'Create/update list', :class => 'btn pale-button'%>

@@ -17,8 +17,8 @@
         <h3><span class="text-muted">On board:</span> <%=@list.board.name %></span></h3>
       <div class="row mx-auto">
         <div class="bottom-toolbar">
-          <%= link_to 'New Snippet', new_list_snippet_path(@list.id), :class =>"btn card-links pale-button bottom-toolbar" %>
-          <%= link_to 'Back to board', board_path(@list.board_id), :class =>"btn card-links pale-button bottom-toolbar" %>
+          <%= link_to 'New Snippet', new_list_snippet_path(@list.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+          <%= link_to 'Back to board', board_path(@list.board_id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
         </div>
       </div>
     </div>
@@ -39,9 +39,9 @@
             <div class="card-body flex-column">
               <p><%= snippet.description.truncate(35) %></p>
               <div class="container w-60">
-                <pre><code class="mini-code-block"><%= snippet.code_block.truncate(20) %></code></pre>
+                <pre style="overflow: hidden;"><code class="mini-code-block"><%= snippet.code_block.truncate(20) %></code></pre>
               </div>
-              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :short) %></p>
+              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :long) %></p>
             </div>
             <div class="btn-group btn-group-sm" role="group">
               <%= link_to 'Show', list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
@@ -58,7 +58,7 @@
               <br>
               <br>
               <br>
-              <p><%= link_to image_tag("tear.png"), new_list_snippet_path(@list.id) %></p>
+              <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_list_snippet_path(@list.id) %></p>
             </div>
           </div>
         </div>

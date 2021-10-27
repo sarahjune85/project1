@@ -1,63 +1,75 @@
-<div class="row">
-  <div class="col-8" style="padding-left: 30px;">
-    <h3><span class="text-muted">snippets for: </span><%= @list.name %></h3>
-    <p style="font-style: italic;">
-      <%= @list.description %>
-    </p>
+<!---------------------- Snippets form -------------------------->
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
   </div>
-  <div class="col">
-    <h3><span class="text-muted">On board:</span> <%=@list.board.name %></span></h3>
-  <div class="row mx-auto">
-    <div class="bottom-toolbar">
-      <%# <%= link_to 'New Snippet', new_list_snippet_path(@list.id), :class =>"btn card-links pale-button bottom-toolbar" %>
+<% end %>
+<div class="container-fluid flex-column p-2 top-menu">
+  <div class="row">
+    <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
       <% if @snippet.id.present? %>
-        <%= link_to 'Back to snippet', list_snippet_path(@snippet.list_id, @snippet.id), :class =>"btn card-links pale-button bottom-toolbar" %>
-        <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id), :class =>"btn card-links pale-button bottom-toolbar"  %>
+        <div class="edit-snippet">
+          <h1>Editing Snippet</h1>
+        </div>
+      <% else %>
+        <h1>New Snippet</h1>
       <% end %>
-      <%= link_to 'Back to board', board_path(@list.board_id), :class =>"btn card-links pale-button bottom-toolbar" %>
+      <h4><span class="text-muted">On list: </span><%= @list.name %></h4>
+    </div>
+    <div class="col top-menu-btns">
+      <h3><span class="text-muted">Board:</span> <%=@list.board.name %></span></h3>
+    <div class="row mx-auto">
+      <div class="bottom-toolbar">
+        <% if @snippet.id.present? %>
+          <%= link_to 'Back to snippet', list_snippet_path(@snippet.list_id, @snippet.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+        <% end %>
+        <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id), :class =>"btn card-links top-menu-btn bottom-toolbar"  %>
+      </div>
     </div>
   </div>
 </div>
-<% if @snippet.id.present? %>
-  <div class="edit-snippet">
-    <h1>Editing Snippet</h1>
-  </div>
-<% else %>
-  <h1>New Snippet</h1>
-<% end %>
-<div class="container w-60">
-  <div class="form-group">
-    <%= form_for [@list, @snippet] do |form| %>
-      <div class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title, :class => 'form-control' %>
-      </div>
-      <div class="field">
-        <%= form.label :description %>
-        <%= form.text_field :description, :class => 'form-control' %>
-      </div>
-      <div class="field">
-        <%= form.label :code_block %><br>
-        <%= form.text_area :code_block, size: "60x7", :class => 'form-control' %>
-      </div>
-      <%# <div class="field">
+</div>
+<div class="list-form-box">
+  <div class="form-container">
+    <div class="container-fluid flex-column">
+      <div class="container w-70">
+        <div class="form-group">
+          <%= form_for [@list, @snippet] do |form| %>
+            <div class="field">
+              <%= form.label :title %>
+              <%= form.text_field :title, :class => 'form-control' %>
+            </div>
+            <p>
+              <div class="field">
+                <%= form.label :description %>
+                <%= form.text_field :description, :class => 'form-control' %>
+              </div>
+            </p>
+            <p>
+              <div class="field">
+                <%= form.label :code_block %><br>
+                <%= form.text_area :code_block, size: "60x7", :class => 'form-control' %>
+              </div>
+            </p>
+            <%# <div class="field">
       <%= form.label :position %>
-      <%# <%= form.number_field :position, :class => 'form-control' %>
-      <%# </div> %>
-      <div class="field">
-        <%= form.label :pinned %>
-        <%= form.check_box :pinned %>
-      </div>
-      <%# <div class="field">
-      <%= form.label :list_id %>
-      <%# <%= form.number_field :list_id, :class => 'form-control' %>
-      <%# </div> %>
-      <p>
-        <div class="actions">
-          <%= form.submit 'Save snippet', :class => 'btn card-links pale-button bottom-toolbar' %>
+            <%# <%= form.number_field :position, :class => 'form-control' %>
+            <%# </div> %>
+            <p>
+              <div class="field">
+                <%= form.label :pinned %>
+                <%= form.check_box :pinned %>
+              </div>
+            </p>
+            <p>
+              <div class="actions">
+                <%= form.submit 'Save snippet', :class => 'btn card-links pale-button bottom-toolbar' %>
+              </div>
+            </p>
+          <% end %>
         </div>
-      </p>
-    <% end %>
+      </div>
+    </div>
   </div>
 </div>
 </div>

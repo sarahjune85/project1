@@ -22,7 +22,7 @@
     <% @boards.in_groups_of(3, false).each do |group| %>
       <div class="row" style="flex-wrap: nowrap;">
         <% group.each do |board| %>
-          <div class=" col-sm">
+          <div class="col-sm">
             <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
               <div class="card-header h3 card-heading"><%= board.name %></div>
               <div class="card-body flex-column">
