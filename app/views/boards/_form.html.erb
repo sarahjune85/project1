@@ -1,39 +1,54 @@
 <!------------------------ Boards form ---------------------------->
-<div class="form-group">
-  <%= form_with(model: board) do |form| %>
-    <div class="field">
-      <%= form.label :name%>
-      <%= form.text_field :name, :class => 'form-control'%>
-    </div>
-    <div class="field">
-      <%# <%= form_for @board do |f| %>
-        <%= form.label :image %>
-        <%# <%= f.select :thing, @thing.pluck(:name, :id), :include_blank => true %>
-        <%# <% end %>
-        <%= form.text_field :image, :class => 'form-control'%>
-      </div>
-      <div class="field">
-        <%= form.label :description%>
-        <%= form.text_area :description, size: "70x5", :class => 'form-control' %>
-      </div>
-      <p>
-        <div class="actions">
-          <%= form.submit 'Create/update board', :class => 'btn btn-info' %>
+<div class="container-fluid flex-column p-2 top-menu">
+  <div class="row">
+    <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
+      <% if @board.id.present? %>
+        <div class="edit-snippet">
+          <h1>Editing Board</h1>
         </div>
-      </p>
-    <% end %>
+      <% else %>
+        <h1>New Board</h1>
+      <% end %>
+    </div>
+    <div class="col" style="text-align: end; padding-top: 1.1rem;">
+      <div class="row mx-auto">
+        <div class="bottom-toolbar">
+          <%= link_to 'Back', dashboard_path, :class =>"btn card-links pale-button bottom-toolbar" %>
+        </div>
+      </div>
+    </div>
   </div>
-  <!---------------------- End boards form -------------------------->
-  <div style="position:relative">
-    <div id="home-carousel" class="carousel">
-      <div class="carousel-inner">
-        <% get_lang_logos %>
-        <% @images.each do |image| %>
-          <div class="item">
-            <%= image_tag image, :style => 'width: 200px;' %>
+</div>
+<div class="list-form-box">
+  <div class="form-container">
+    <div class="container-fluid flex-column">
+      <div class="form-group">
+        <%= form_with(model: board) do |form| %>
+          <div class="field">
+            <%= form.label :name%>
+            <%= form.text_field :name, :maxlength => 20, :class => 'form-control'%>
           </div>
+          <p>
+            <div class="field">
+              <%= form.label :image %>
+              <%= form.select :image, $images %>
+            </div>
+          </p>
+          <p>
+            <div class="field">
+              <%= form.label :description%>
+              <%= form.text_area :description, :maxlength => 120, size: "50x4", :class => 'form-control' %>
+            </div>
+          </p>
+          <p>
+            <div class="actions">
+              <%= form.submit 'Save board', :class => 'btn pale-button' %>
+            </div>
+          </p>
         <% end %>
       </div>
+      <!---------------------- End boards form -------------------------->
     </div>
   </div>
+</div>
 </div>

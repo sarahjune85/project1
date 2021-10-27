@@ -1,5 +1,5 @@
 class ListsController < ApplicationController  # 
-  before_action :set_board, only: %i[new create]
+  before_action :set_board, only: %i[new edit create update destroy]
 
   # GET /lists - boards/:id/
   def index
@@ -9,26 +9,24 @@ class ListsController < ApplicationController  #
 
   # GET /boards/:board_id/lists/:id
   def show
-    set_list # using private callbacks below
+    set_list
     @board = Board.find_by (params[:list_id])
   end
 
   # GET /boards/:board_id/lists/new
   def new
-    set_board # this needs to grab id from board
     @list = @board.lists.new
   end
 
   # GET /boards/:board_id/lists/:id/edit
   def edit
     set_list
-    set_board
   end
 
   # POST /boards/:board_id/lists
   def create
     @list = @board.lists.new(list_params)
-    set_board
+    @board.lists.last.move_to_top
     respond_to do |format|
       if @list.save
         format.html { redirect_to board_path(@board.id), notice: "'#{@list.name}' list was successfully created." }
@@ -40,7 +38,6 @@ class ListsController < ApplicationController  #
 
   # PATCH/PUT /boards/:board_id/lists/:id
   def update
-    set_board
     @list = List.find(params[:id])
     respond_to do |format|
       if @list.update(list_params)
@@ -53,7 +50,6 @@ class ListsController < ApplicationController  #
 
   # DELETE /boards/:board_id/lists/:id
   def destroy
-    set_board
     list = List.find(params[:id])
     name = list.name
     list.destroy
@@ -69,7 +65,7 @@ class ListsController < ApplicationController  #
       @list = List.find(params[:id])
     end
 
-    def set_board
+    def set_board 
       @board = Board.find (params[:board_id])
     end
 

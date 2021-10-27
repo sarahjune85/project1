@@ -1,23 +1,56 @@
 <!---------------------- Lists form -------------------------->
-<div class="form-group">
-  <%= form_for [@board, @list] do |form| %>
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name, :class => 'form-control'  %>
-    </div>
-    <div class="field">
-      <%= form.label :description %>
-      <%= form.text_area :description, size: "60x2", :class => 'form-control' %>
-    </div>
-    <div class="field">
-      <%= form.label :position %>
-      <%= form.number_field :position, :class => 'form-control'  %>
-    </div>
-    <p>
-      <div class="actions">
-        <%= form.submit 'Create/update list', :class => 'btn btn-info'%>
-      </div>
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
+<div class="container-fluid flex-column p-2 top-menu">
+  <div class="row">
+    <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
+      <h1>New List</h1>
+      <p style="font-style: italic;">
+        <h3><span class="text-muted">For board:</span> <%=@board.name %></span></h3>
     </p>
-  <% end %>
+  </div>
+  <div class="col" style="text-align: center; padding-top: 1.6rem;">
+    <div class="row mx-auto">
+      <div class="bottom-toolbar">
+        <%= link_to 'Back to board', board_path(@board.id), :class =>"btn card-links pale-button bottom-toolbar" %>
+        <%= link_to 'Dashboard', dashboard_path, :class =>"btn card-links pale-button bottom-toolbar" %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="list-form-box">
+  <div class="form-container">
+    <div class="container-fluid flex-column">
+      <div class="form-group">
+        <%= form_for [@board, @list] do |form| %>
+          <div class="field">
+            <%= form.label :name %>
+            <%= form.text_field :name, :maxlength => 40, :class => 'form-control'  %>
+          </div>
+          <div class="field">
+            <%= form.label :description %>
+            <%= form.text_area :description, :maxlength => 120, size: "60x2", :class => 'form-control' %>
+          </div>
+          <div class="field">
+            <% if @list.id? %>
+              <%= form.label :position %>
+              <%= form.number_field :position, :class => 'form-control'  %>
+              <%# <%= form.select :position, @list.pluck(:position, :id), :include_blank => true %>
+            <% end %>
+          </div>
+          <p>
+            <div class="actions">
+              <%= form.submit 'Create/update list', :class => 'btn pale-button'%>
+            </div>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 <!---------------------- End lists form -------------------------->

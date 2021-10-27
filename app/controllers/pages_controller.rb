@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
   before_action :check_for_login, :only => [:home] 
 
-  def home
-    @boards = @current_user.boards
+  def home  
+    @boards = @current_user.boards.order(position: :asc)
+
+
     time = Time.new    
     if time.hour >= 7 && time.hour <= 10
       @greeting = "Rise and shine, #{@current_user.name}. 🌄"

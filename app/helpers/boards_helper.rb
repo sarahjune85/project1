@@ -1,7 +1,6 @@
 module BoardsHelper
 
-    def get_lang_logos
-        @images = [
+       $images = [
         'js.png', 
         'ruby.png', 
         'css.png', 
@@ -11,8 +10,10 @@ module BoardsHelper
         'csharp.png',
         'html.png',
         'sql.png',
-        'fortran.png'
+        'fortran.png',
+        'golang.png',
+        'duck.png'
         ]
-    end
+
 
 end

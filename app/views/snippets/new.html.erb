@@ -1,5 +1,2 @@
-<div class="container w-60">
-  <h1>New Snippet</h1>
+<div class='container container-table main-box'>
   <%= render 'form', :locals => { :list => @list, :snippet => @snippet } %>
-  <%= link_to 'Back', board_list_path(@list.board_id, @list) %>
-</div>

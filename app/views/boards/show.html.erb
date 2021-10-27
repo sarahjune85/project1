@@ -1,35 +1,61 @@
-<div class='container container-table main-box'>
+<!-------------------------Board#Showing all Lists----------------------------->
+<div class='container-fluid container-table main-box'>
   <% if notice.present? %>
     <div class="alert alert-success">
       <%= notice %>
     </div>
   <% end %>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <span class="h2"><%= @board.name %>, Board: <%= @board.id %></span>
-    </nav>
-  </div>
-  <div class="container">
+  <div class="container-fluid flex-column p-2 top-menu">
     <div class="row">
-      <% @board.lists.each do |list| %>
-        <div class="col-sm">
-          <div class="card">
-            <div class="card-body">
+      <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
+        <h3><span class="text-muted">On board:</span> <%=@board.name %></span></h3>
+      <p style="font-style: italic;">
+        <%= @board.description %>
+      </p>
+    </div>
+    <div class="col" style="text-align: center; padding-top: 1.6rem;">
+      <div class="row mx-auto">
+        <div class="bottom-toolbar">
+          <%= link_to "New List", new_board_list_path(@board.id), :class => "btn card-links pale-button bottom-toolbar" %>
+          <%= link_to 'Back to all boards', dashboard_path, :class =>"btn card-links pale-button bottom-toolbar" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid flex-column" style="margin-top: 20px;">
+  <% if @board.lists.empty? %>
+    <div class="empty" style="padding-top: 20px;">
+      <%= link_to image_tag('void.png', :class => 'empty-img'), new_board_list_path(@board.id) %>
+    </div>
+  <% end %>
+  <% @board.lists.in_groups_of(2, false).each do |group| %>
+    <div class="row" style="flex-wrap: wrap;">
+      <% group.each do |list| %>
+        <div class="col-md list-box">
+          <div class="card text-dark">
+            <div class="card-body flex-column"  style="height: 10rem;">
               <h5 class="card-title"><%= list.name %></h5>
-              <p class="card-text"><%= list.description %></p>
-              <div class="btn-group btn-group-sm" role="group">
-                <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn btn-info" %>
-                <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn btn-info"  %>
-                <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn btn-info"  %>
+              <p class="card-text"><%= list.description.truncate(100) %></p>
+              <div class="btn-group" role="group">
+                <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn pale-button list-button" %>
+                <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn pale-button list-button"  %>
+                <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn pale-button list-button"  %>
               </div>
             </div>
           </div>
         </div>
       <% end %>
+      <% (2 - group.length).times.each do |fake_div| %>
+        <div class="col-md list-box">
+          <div class="card text-dark text-center">
+            <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
+              <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_board_list_path(@board.id) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  </div>
-  <div class="nav">
-    <!--CREATE A NEW LIST THROUGH BOARD ROUTE -->
-    <%= link_to "New List", new_board_list_path(@board.id), :class => "navbar-brand nav-link active" %>
-  </div>
+  <% end %>
+</div>
 </div>

@@ -1,5 +1,5 @@
 <!---------------------------pages#home----------------------------->
-<div class='container container-table main-box'>
+<div class='container-fluid container-table main-box'>
   <div class="greeting-container">
     <div class="greeting-row">
       <div class="greeting-content-main">
@@ -13,14 +13,14 @@
   </div>
   <div class="row mx-auto">
     <% if notice.present? %>
-      <div class="alert alert-success">
+      <div class="alert alert-success" style="padding-left: 30px; margin-top: 15px;">
         <%= notice %>
       </div>
     <% end %>
   </div>
-  <div class="container flex-column">
+  <div class="container-fluid flex-column">
     <% @boards.in_groups_of(3, false).each do |group| %>
-      <div class="row offset-sm-0" style="margin-right: 0px;">
+      <div class="row" style="flex-wrap: nowrap;">
         <% group.each do |board| %>
           <div class=" col-sm">
             <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
@@ -48,7 +48,7 @@
                 <br>
                 <br>
                 <br>
-                <p><%= link_to image_tag("tear.png"), new_board_path %></p>
+                <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_board_path %></p>
               </div>
             </div>
           </div>

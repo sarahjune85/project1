@@ -1,13 +1,15 @@
 class BoardsController < ApplicationController
   before_action :check_for_login
   # before_action :set_board, only: %i[ show edit update destroy ]
-
+  # todo_list.todo_items.first.move_to_bottom
+  # todo_list.todo_items.last.move_higher
 
   # GET /boards/:id - BoardsController#show
   def show
     set_board
     @list = List.find_by(params[:list_id]) 
     @user = @board.user
+    
   end
 
   # GET /boards/new
@@ -18,12 +20,14 @@ class BoardsController < ApplicationController
   # GET /boards/:id/edit
   def edit
     set_board
+
   end
 
   # POST /boards
   def create
     newboard = Board.new board_params
     @current_user.boards << newboard
+    @current_user.boards.last.move_to_top
 
     respond_to do |format|
       if newboard.save

@@ -13,8 +13,29 @@ $a-tags-hover: "a:active, a:hover";
   color: rgb(255, 255, 255);
   text-decoration: none;
 }
+
 #{$a-tags-hover} {
   color: $mint-color;
+}
+
+.btn-primary {
+  @include button-variant(
+    $mint-color,
+    darken($mint-color, 7.5%),
+    darken($mint-color, 10%),
+    lighten($mint-color, 5%),
+    lighten($mint-color, 10%),
+    darken($mint-color, 30%)
+  );
+}
+
+.btn-outline-primary {
+  @include button-outline-variant(
+    $mint-color,
+    #222222,
+    lighten($mint-color, 5%),
+    $mint-color
+  );
 }
 
 .navbar {
@@ -121,7 +142,7 @@ $a-tags-hover: "a:active, a:hover";
   }
 }
 
-img:hover {
+.dash-item:hover {
   transform: scale(1.2);
 }
 
@@ -188,4 +209,43 @@ img:hover {
 .login-button {
   display: block;
   width: -webkit-fill-available;
+}
+
+.col-sm {
+  display: flex;
+  justify-content: center;
+}
+
+.list-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 1.2rem;
+  max-width: 50%;
+}
+
+.list-button {
+  font-size: 1rem;
+}
+
+.form-container {
+  background-color: rgba(white, 0.3);
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 67%;
+  border-radius: 15px;
+}
+
+.list-form-box {
+  display: flex;
+  justify-content: center;
+}
+
+.empty {
+  text-align: center;
+}
+
+.empty-img {
+  width: 400px;
 }

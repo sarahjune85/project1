@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-  before_action :set_list, only: %i[ new create ]
+  before_action :set_list, only: %i[ new create edit create update destroy ]
   before_action :set_snippet, only: %i[ show edit update destroy ]
 
   # GET /snippets - unused route.
@@ -36,7 +36,7 @@ class SnippetsController < ApplicationController
       if @snippet.save
         format.html { redirect_to board_list_path(@list.board_id, @list), notice: 'Snippet was successfully created.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        render :new # show them the form again.
       end
     end
   end
@@ -74,6 +74,7 @@ class SnippetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def snippet_params
-      params.require(:snippet).permit(:title, :description, :code_block, :pinned, :position, :list_id)
+      params.require(:snippet).permit(:title, :description, :code_block, :pinned, :position)
+
     end
 end

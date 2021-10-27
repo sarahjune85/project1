@@ -1,4 +1,3 @@
-<h1>Editing Snippet</h1>
-<%= render 'form', :locals => { :list => @list, :snippet => @snippet } %>
-<%# <%= render 'form', snippet: @snippet %>
-<%= link_to 'Back to snippet', list_snippet_path(@snippet.list_id, @snippet.id) %>
+<div class='container container-table main-box'>
+  <!------------------------ Snippet form starts ---------------------------->
+  <%= render 'form', :locals => { :list => @list, :snippet => @snippet } %>

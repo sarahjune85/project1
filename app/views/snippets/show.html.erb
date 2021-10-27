@@ -1,31 +1,33 @@
-<% if notice.present? %>
-  <div class="alert alert-success">
-    <%= notice %>
-  </div>
-<% end %>
-<div class='container container-table' style="max-width: 50em;">
-  <p>
-    <strong>Title:</strong>
-    <%= @snippet.title %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= @snippet.description %>
-  </p>
-  <p>
-    <strong>Code block:</strong>
-    <div class="container w-60">
-      <pre style="border-radius: 15px;"><code style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+<div class='container container-table main-box'>
+  <% if notice.present? %>
+    <div class="alert alert-success">
+      <%= notice %>
     </div>
-  </p>
-  <p>
-    <strong>Pinned:</strong>
-    <%= @snippet.pinned %>
-  </p>
-  <p>
-    <strong>Position:</strong>
-    <%= @snippet.position %>
-  </p>
-  <%= link_to 'Edit', edit_list_snippet_path(@list, @snippet.id) %>
-  <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id) %>
+  <% end %>
+  <div class='container container-table' style="max-width: 50em;">
+    <p>
+      <strong>Title:</strong>
+      <%= @snippet.title %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @snippet.description %>
+    </p>
+    <p>
+      <strong>Code block:</strong>
+      <div class="container w-60">
+        <pre style="border-radius: 15px;"><code style="border-radius: 15px;"><%= @snippet.code_block %></code></pre>
+      </div>
+    </p>
+    <p>
+      <strong>Pinned:</strong>
+      <%= @snippet.pinned %>
+    </p>
+    <p>
+      <strong>Position:</strong>
+      <%= @snippet.position %> <!--TODO: use selector pluck here -->
+    </p>
+    <%= link_to 'Edit', edit_list_snippet_path(@list, @snippet.id) %>
+    <%= link_to 'Back to list', board_list_path(@list.board_id, @snippet.list_id) %>
+  </div>
 </div>
