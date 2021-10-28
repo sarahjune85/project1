@@ -1,13 +1,18 @@
 <!------------------------ Boards form ---------------------------->
+<% if flash[:failmsg].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:failmsg] %>
+  </div>
+<% end %>
 <div class="container-fluid flex-column p-2 top-menu">
   <div class="row">
     <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
       <% if @board.id.present? %>
         <div class="edit-snippet">
-          <h1>Editing Board</h1>
+          <h1><strong>Editing Board</strong></h1>
         </div>
       <% else %>
-        <h1>New Board</h1>
+        <h1><strong>New Board</strong></h1>
       <% end %>
     </div>
     <div class="col" style="text-align: end; padding-top: 1%;">
@@ -26,12 +31,12 @@
         <%= form_with(model: board) do |form| %>
           <div class="field">
             <%= form.label :name%>
-            <%= form.text_field :name, :maxlength => 20, :class => 'form-control'%>
+            <%= form.text_field :name, :maxlength => 20, :class => 'form-control' %>
           </div>
           <p>
             <div class="field">
               <%= form.label :image %>
-              <%= form.select :image, $images %>
+              <%= form.select(:image, $logos.each {|key, value| [ key, value ] }) %>
             </div>
           </p>
           <p>
@@ -40,6 +45,12 @@
               <%= form.text_area :description, :maxlength => 120, size: "50x4", :class => 'form-control' %>
             </div>
           </p>
+          <div class="field">
+            <% if @board.id? %>
+              <%= form.label :position %>
+              <%= form.select :position, (1..@boards.all.count), :include_blank => true %>
+            <% end %>
+          </div>
           <p>
             <div class="actions">
               <%= form.submit 'Save board', :class => 'btn pale-button' %>

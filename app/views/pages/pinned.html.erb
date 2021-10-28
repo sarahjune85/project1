@@ -20,10 +20,10 @@
     <% @snippets.each do |snip| %>
       <% if snip.pinned? %>
         <div class="grid-card">
-          <div class="card-header-mint"><%= link_to snip.title.truncate(20).upcase, list_snippet_path(snip.list_id, snip.id) %></div>
+          <div class="card-header-mint"><%= link_to snip.title.truncate(20), list_snippet_path(snip.list_id, snip.id) %></div>
           <p class="card-description"><%= snip.description.truncate(35) %></p>
           <p>
-            <pre><code class="mini-code-block"><%= snip.code_block.truncate(60) %></code></pre>
+            <pre><code class="mini-code-block"><%= snip.code_block.truncate(100) %></code></pre>
           </p>
           <p class="card-timestamp"><strong>Created: </strong><%= snip.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></p>
         </div>

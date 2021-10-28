@@ -1,15 +1,11 @@
 class BoardsController < ApplicationController
   before_action :check_for_login
-  # before_action :set_board, only: %i[ show edit update destroy ]
-  # todo_list.todo_items.first.move_to_bottom
-  # todo_list.todo_items.last.move_higher
+  before_action :set_board, only: %i[show edit update destroy]
 
-  # GET /boards/:id - BoardsController#show
+  # GET /boards/:id
   def show
-    set_board
     @list = List.find_by(params[:list_id]) 
-    @user = @board.user
-    
+    @user = @board.user    
   end
 
   # GET /boards/new
@@ -19,8 +15,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/:id/edit
   def edit
-    set_board
-
+    @boards = @current_user.boards.order(position: :asc)
   end
 
   # POST /boards
@@ -29,38 +24,35 @@ class BoardsController < ApplicationController
     @current_user.boards << newboard
     @current_user.boards.last.move_to_top
 
-    respond_to do |format|
-      if newboard.save
-        format.html { redirect_to dashboard_path, notice: "#{newboard.name} board was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
+    if newboard.save
+      redirect_to dashboard_path, notice: "#{newboard.name} board was successfully created."
+    else
+      redirect_to dashboard_path, notice: "Board fields cannot be empty."
+    end    
   end
 
   # PATCH/PUT /boards/:id
   def update
-    @board = Board.find(params[:id])
-    respond_to do |format|
-      if @board.update(board_params)
-        format.html { redirect_to dashboard_path, notice: "#{@board.name} board was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+    @boards = @current_user.boards.order(position: :asc)
+   
+    if @board.update(board_params)
+      redirect_to dashboard_path, notice: "#{@board.name} board was successfully updated." 
+    else
+      flash[:failmsg] = "Board fields cannot be empty."
+      redirect_to edit_board_path(@board)
+    end    
   end
 
   # DELETE /boards/:id
   def destroy
-    board = Board.find(params[:id])
-    name = board.name
-    board.destroy
+    name = @board.name
+    @board.destroy
     
     redirect_to dashboard_path, notice: "#{name} board was successfully destroyed."    
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Callbacks:
     def set_user
       @user = User.find_by :email => session[:user_id]
     end
@@ -69,12 +61,8 @@ class BoardsController < ApplicationController
       @board = Board.find(params[:id])
     end
 
-    def set_lists
-      @lists = List.find_by(params[:board_id]) 
-    end
-
-    # Only allow a list of trusted parameters through.
+    # Defined trusted params:
     def board_params
-      params.require(:board).permit(:name, :image, :description, :user_id)
+      params.require(:board).permit(:name, :image, :description, :user_id, :position)
     end
 end

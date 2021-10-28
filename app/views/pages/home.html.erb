@@ -3,11 +3,11 @@
   <div class="greeting-container">
     <div class="greeting-row">
       <div class="greeting-content-main">
-        <h2 style=""><%= @greeting %></h2>
+        <h2 style="font-weight: bold;"><%= @greeting %></h2>
       </div>
       <div class="greeting-content-secondary">
         <h3>Try not to cry. <small class="text-muted">Cry a lot.</small></h3>
-        <p class="text-muted" style="font-style: italic;">Record your code discoveries & victories.</p>
+        <p class="text-muted" style="font-style: italic;">Record your small code victories.</p>
       </div>
     </div>
   </div>
@@ -18,41 +18,21 @@
       </div>
     <% end %>
   </div>
-  <div class="container-fluid flex-column">
-    <% @boards.in_groups_of(3, false).each do |group| %>
-      <div class="row" style="flex-wrap: nowrap;">
-        <% group.each do |board| %>
-          <div class="col-sm">
-            <div class="card text-dark mb-3 text-center" style="width: 18rem; height: 19rem; margin-top: 20px;">
-              <div class="card-header h3 card-heading"><%= board.name %></div>
-              <div class="card-body flex-column">
-                <p>Board ID: <%= board.id %></p>
-                <%= link_to image_tag(board.image, :class => 'dash-item'), board if board.image.present? %>
-                <br>
-                <br>
-                <p><%= board.description.truncate(30) %></p>
-              </div>
-              <div class="btn-group btn-group-sm" role="group">
-                <%= link_to 'Open', board, :class =>"btn card-links"%>
-                <%= link_to 'Edit', edit_board_path(board), :class =>"btn card-links"%>
-                <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn card-links"%>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <% (3 - group.length).times.each do |fake_div| %>
-          <div class="col-sm">
-            <div class="card text-dark bg-light mb-3 text-center" style="width: 18rem; height: 19rem;">
-              <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_board_path %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
+  <!------ PINNED LOGIC - Responsive Grid - REUSE ME PLEASE -------->
+  <div class="grid-cards-parent">
+    <% @boards.each do |board| %>
+      <div class="grid-card-board">
+        <div class="card-header-mint"><%= link_to board.name.truncate(20), board %></div>
+        <p>
+          <%= link_to image_tag(board.image, :class => 'dash-item'), board if board.image.present? %>
+        </p>
+        <p><%= board.description.truncate(35) %></p>
+        <p class="card-timestamp"  style="font-style: italic; padding-right: 14px;"><strong>Created: </strong><%= board.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></p>
+        <div class="btn-group btn-group-sm" role="group">
+          <%= link_to 'Open', board, :class =>"btn card-links"%>
+          <%= link_to 'Edit', edit_board_path(board), :class =>"btn card-links"%>
+          <%= link_to 'Delete', board, method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn card-links"%>
+        </div>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,6 @@
 class ListsController < ApplicationController  # 
   before_action :set_board, only: %i[new edit create update destroy]
+  before_action :set_list, only: %i[show edit update destroy]
 
   # GET /lists - boards/:id/
   def index
@@ -9,7 +10,6 @@ class ListsController < ApplicationController  #
 
   # GET /boards/:board_id/lists/:id
   def show
-    set_list
     @board = Board.find_by (params[:list_id])
   end
 
@@ -20,47 +20,43 @@ class ListsController < ApplicationController  #
 
   # GET /boards/:board_id/lists/:id/edit
   def edit
-    set_list
+
   end
 
   # POST /boards/:board_id/lists
   def create
-    @list = @board.lists.new(list_params)
-    @board.lists.last.move_to_top
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to board_path(@board.id), notice: "'#{@list.name}' list was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    @list = @board.lists.new(list_params)   
+
+    if @list.save
+      @list.move_to_top # shift to 1st position.
+      redirect_to board_path(@board.id), notice: "#{@list.name} list was successfully created."
+    else
+      flash[:failmsg] = "List fields cannot be empty."
+      redirect_to new_board_list_path(@board.id)
     end
   end
 
   # PATCH/PUT /boards/:board_id/lists/:id
   def update
-    @list = List.find(params[:id])
-    respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to board_path(@board.id), notice: "'#{@list.name}' list was successfully updated." }
+        @list.move_to_top # shift to 1st position.
+        redirect_to board_path(@board.id), notice: "#{@list.name} list was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        flash[:failmsg] = "List fields cannot be empty."
+        redirect_to edit_board_list_path(@board.id, @list.id)
       end
-    end
   end
 
   # DELETE /boards/:board_id/lists/:id
   def destroy
-    list = List.find(params[:id])
-    name = list.name
-    list.destroy
+    name = @list.name
+    @list.destroy    
 
-    respond_to do |format|
-      format.html { redirect_to board_path(@board.id), notice: "'#{name}' list was successfully destroyed." }
-    end
+    redirect_to board_path(@board.id), notice: "'#{name}' list was successfully destroyed."    
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Callbacks:
     def set_list
       @list = List.find(params[:id])
     end
@@ -69,7 +65,7 @@ class ListsController < ApplicationController  #
       @board = Board.find (params[:board_id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Defined trusted params:
     def list_params
       params.require(:list).permit(:name, :description, :position, :board_id)
     end

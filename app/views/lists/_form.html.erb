@@ -1,7 +1,7 @@
 <!---------------------- Lists form -------------------------->
-<% if notice.present? %>
-  <div class="alert alert-success">
-    <%= notice %>
+<% if flash[:failmsg].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:failmsg] %>
   </div>
 <% end %>
 <div class="container-fluid flex-column p-2 top-menu">
@@ -9,24 +9,24 @@
     <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
       <% if @list.id.present? %>
         <div class="edit-snippet">
-          <h1><span class="text-muted">Editing List:</span> <%=@list.name %></h1>
+          <h1><strong><span class="text-muted">Editing List:</span> <%=@list.name %></strong></h1>
         </div>
       <% else %>
-        <h1>New List</h1>
+        <h1><strong>New List</strong></h1>
       <% end %>
       <p style="font-style: italic;">
-        <h3><span class="text-muted">For board:</span> <%=@board.name %></span></h3>
-    </p>
-  </div>
-  <div class="col" style="text-align: center; padding-top: 1.6rem;">
-    <div class="row mx-auto">
-      <div class="bottom-toolbar">
-        <%= link_to 'Back to board', board_path(@board.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
-        <%= link_to 'Dashboard', dashboard_path, :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+        <h3><span class="text-muted"><strong>For board:</span> <%=@board.name %></strong></h3>
+      </p>
+    </div>
+    <div class="col" style="text-align: center; padding-top: 1.6rem;">
+      <div class="row mx-auto">
+        <div class="bottom-toolbar">
+          <%= link_to 'Back to board', board_path(@board.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+          <%= link_to 'Dashboard', dashboard_path, :class =>"btn card-links top-menu-btn bottom-toolbar" %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <div class="list-form-box">
   <div class="form-container">
@@ -47,8 +47,7 @@
             <div class="field">
               <% if @list.id? %>
                 <%= form.label :position %>
-                <%= form.number_field :position, :class => 'form-control'  %>
-                <%# <%= form.select :position, @list.pluck(:position, :id), :include_blank => true %>
+                <%= form.select :position, (1..@board.lists.all.count) %>
               <% end %>
             </div>
           </p>

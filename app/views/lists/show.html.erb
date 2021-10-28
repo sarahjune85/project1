@@ -1,5 +1,5 @@
 <!-------------------------List#Showing all Snippets----------------------------->
-<div class='container container-table main-box'>
+<div class='container main-box'>
   <% if notice.present? %>
     <div class="alert alert-success">
       <%= notice %>
@@ -41,12 +41,14 @@
               <div class="container w-60">
                 <pre style="overflow: hidden;"><code class="mini-code-block"><%= snippet.code_block.truncate(20) %></code></pre>
               </div>
-              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :long) %></p>
             </div>
-            <div class="btn-group btn-group-sm" role="group">
-              <%= link_to 'Show', list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
-              <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
-              <%= link_to 'Delete', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+            <div class="snippet-footer">
+              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :long) %></p>
+              <div class="btn-group btn-group-sm" role="group">
+                <%= link_to 'Show', list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
+                <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
+                <%= link_to 'Delete', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+              </div>
             </div>
           </div>
         </div>
@@ -63,6 +65,26 @@
           </div>
         </div>
       <% end %>
+    </div>
+  <% end %>
+</div>
+<!------ PINNED LOGIC - Responsive Grid - REUSE ME PLEASE -------->
+<div class="grid-cards-parent">
+  <% @list.snippets.each do |snip| %>
+    <div class="grid-card">
+      <div class="card-header-mint"><%= link_to snip.title.truncate(20), list_snippet_path(snip.list_id, snip.id) %></div>
+      <p class="card-description"><%= snip.description.truncate(35) %></p>
+      <p>
+        <pre><code class="mini-code-block container w-60"><%= snip.code_block.truncate(60) %></code></pre>
+      </p>
+      <div class="snippet-footer">
+        <span class="card-timestamp"><strong>Created: </strong><%= snip.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></span>
+        <div class="btn-group btn-group-sm justify-content-end" role="group">
+          <%= link_to 'Show', list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
+          <%= link_to 'Edit', edit_list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
+          <%= link_to 'Delete', list_snippet_path(@list, snip), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

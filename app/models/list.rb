@@ -1,6 +1,7 @@
 class List < ApplicationRecord
+    belongs_to :board
+    validates :name, :description, :presence => true
     acts_as_list scope: :board
-
-    belongs_to :board, :optional => true
+    
     has_many :snippets, -> { order(position: :asc) }, dependent: :destroy
 end

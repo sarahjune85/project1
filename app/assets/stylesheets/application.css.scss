@@ -1,6 +1,7 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
 $mint-color: #4fc8a7;
 $purple-color: rgb(113, 61, 133);
@@ -16,6 +17,10 @@ $a-tags-hover: "a:active, a:hover";
 
 #{$a-tags-hover} {
   color: $mint-color;
+}
+
+* {
+  font-family: "Mukta", sans-serif;
 }
 
 .btn-primary {
@@ -70,7 +75,9 @@ $a-tags-hover: "a:active, a:hover";
 }
 
 .main-box {
-  width: 990px;
+  max-width: 990px;
+  display: grid;
+  // width: 990px;
   margin-top: 30px;
   background-color: #d9dbdd;
   border-radius: 15px;
@@ -138,6 +145,7 @@ $a-tags-hover: "a:active, a:hover";
 .dash-item {
   max-width: 100px;
   height: 90px;
+  margin-top: 1rem;
 }
 
 .login-container {
@@ -256,6 +264,7 @@ $a-tags-hover: "a:active, a:hover";
   border-radius: 9px 9px 0px 0px;
   padding: 0.5rem 1rem;
   text-align: center;
+  font-weight: bold;
 }
 
 .card-description {
@@ -265,7 +274,7 @@ $a-tags-hover: "a:active, a:hover";
 }
 
 .mini-code-block {
-  height: 90px;
+  height: 100px;
   font-size: calc(0.6rem + 1.5 * ((100vw - 320px) / 680));
   margin-bottom: -1rem;
   overflow: hidden;
@@ -276,7 +285,8 @@ $a-tags-hover: "a:active, a:hover";
   font-size: calc(0.6rem + 1.5 * ((100vw - 320px) / 680));
 }
 
-.grid-card {
+.grid-card,
+.grid-card-board {
   background-color: #eeeeeed2;
   color: #232931;
   // padding: 1rem;
@@ -284,10 +294,14 @@ $a-tags-hover: "a:active, a:hover";
   border-radius: 12px;
 }
 
+.grid-card-board {
+  height: 18rem;
+  text-align: center;
+}
+
 .grid-cards-parent {
   padding-top: 1.2rem;
   max-width: 1200px;
-  margin: 0 auto;
   display: grid;
   grid-gap: 1rem;
   /* eliminate media queries with one line, a bit iffy */
@@ -304,4 +318,9 @@ $a-tags-hover: "a:active, a:hover";
   .grid-cards-parent {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+pre {
+  display: grid;
+  overflow: hidden;
 }
