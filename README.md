@@ -17,7 +17,7 @@ Your snippet will display the troublesome block for you with syntax highlighting
 
 It uses nested models to display language boards, their lists, and their snippets.
 
----
+
 
 # Usage
 
@@ -59,7 +59,7 @@ It uses nested models to display language boards, their lists, and their snippet
 
 Many thanks to...
 
-- Our wonderful & patient TAs, Pat & Rowena. 🐈
-- Our wonderful & slightly less patient instructor, Joel. 🐈‍⬛
+- Our wonderful & patient TAs, Pat & Rowena. 🙌
+- Our wonderful & slightly less patient instructor, Joel. 🐈
 - Trello - my inspiration and whilst I woefully underperformed in comparison, it's all good. [I'm learnding!](https://youtu.be/TMlyhZpGbwI)
 - My loved ones - for putting up with me during project week, when I briefly became a cave troll. 👹
