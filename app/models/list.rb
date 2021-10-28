@@ -1,5 +1,5 @@
 class List < ApplicationRecord
-    belongs_to :board
+    belongs_to :board, :optional => true
     validates :name, :description, :presence => true
     acts_as_list scope: :board
     

@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
-u1 = User.create :email => 'sarahjune@gmail.com', :name => 'Sarah', :password => 'chicken', :admin => true
+u1 = User.create :email => 'sarah@cats.com', :name => 'Sarah', :password => 'chicken', :admin => true
 u2 = User.create :email => 'louis@cats.com', :name => 'Smelly Louis', :password => 'chicken'
 u3 = User.create :email => 'garry@cats.com', :name => 'The Bean', :password => 'chicken'
 puts "#{ User.count } users"
 
 Board.destroy_all
 js = Board.create :name => 'JavaScript', :description => 'A close relative of the devil.', :image => "js.png", :position => 1
-css = Board.create :name => 'CSS', :description => 'Descent into madness', :image => "css.png", :position => 3
+css = Board.create :name => 'CSS', :description => 'Descent into madness', :image => 'css.png', :position => 3
 ruby = Board.create :name => 'Ruby', :description => 'I WANT BRACKETS!', :image => "ruby.png", :position => 2
 html = Board.create :name => 'HTML', :description => 'Old faithful.', :image => "html.png", :position => 1
 rust = Board.create :name => 'Rust', :description => 'What they hell is this', :image => 'rust.png', :position => 2
