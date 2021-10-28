@@ -11,6 +11,8 @@ module BoardsHelper
                 "Rust" => "rust.png",
                 "Fortran" => "fortran.png",
                 "Golang" => "golang.png",
-                "Duck" => "duck.png"
+                "Duck" => "duck.png",
+                "Gin" => "gin.png",
+                "This is fine" => "finedog.png"
         }
 end

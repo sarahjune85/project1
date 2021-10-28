@@ -11,12 +11,13 @@
     <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!------------------>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_include_tag "application", defer: true %>
     <%= favicon_link_tag asset_path('favicon2.ico') %>
   </head>
-  <body style="padding-bottom: 70px; background-color: #232931; ">
-    <nav class="navbar navbar-light">
+  <body style="">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="padding-right: 10px;">
       <div class="navbar-brand ml-auto">
         <% if @current_user.present? %>
           <%= link_to 'codeTears', dashboard_path, :class => 'tears-logo' %>
@@ -26,30 +27,35 @@
           <%= image_tag "tear.png", :style => "height: 40px; margin-bottom: 10px;" %>
         <% end %>
       </div>
-      <ul class="nav justify-content-end" style="font-size: 1em; padding-top: 10px; margin-bottom: 10px;">
-        <% if @current_user.present? %>
-          <!-- if user logged in, show log out by making session#destoy request from routes -->
-          <li class="nav-item">
-            <%= link_to 'All Boards', dashboard_path, :class => 'nav-link text-light' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "New Board", new_board_path, :class => 'nav-link text-light'  %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link text-light'%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log out #{ @current_user.name }", login_path, :method => 'delete', :class => 'nav-link text-light'  %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Sign up', new_user_path, :class => 'nav-link text-light' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign in', login_path, :class => 'nav-link text-light' %>
-          </li>
-        <% end %>
-      </ul>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <% if @current_user.present? %>
+            <!-- if user logged in, show log out by making session#destoy request from routes -->
+            <li class="nav-item">
+              <%= link_to 'All Boards', dashboard_path, :class => 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "New Board", new_board_path, :class => 'nav-link'  %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Pinned Snippets", pages_pinned_path, :class => 'nav-link'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out #{ @current_user.name }", login_path, :method => 'delete', :class => 'nav-link'  %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sign up', new_user_path, :class => 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign in', login_path, :class => 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
     <div>
       <%= yield %>

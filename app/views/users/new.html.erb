@@ -2,7 +2,7 @@
   <div class="content">
     <div class="panel">
       <div class="auto-form-wrapper" style="padding: 20px;">
-        <h1>Sign up!</h1>
+        <h1 style="text-align: center;"><strong>Sign up!</strong></h1>
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
             <p>
@@ -30,7 +30,7 @@
             <%= f.label :password_confirmation, 'Confirm password' %>
             <%= f.password_field :password_confirmation, :class => 'form-control' %>
           </p>
-          <%= f.submit "Sign up!", :class => 'btn pale-button btn-lg btn-block login-button' %>
+          <%= f.submit "Sign up!", :class => 'btn btn-lg btn-primary login-button' %>
         <% end %>
       </div>
     </div>

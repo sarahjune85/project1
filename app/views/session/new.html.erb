@@ -2,9 +2,9 @@
   <div class="content">
     <div class="panel">
       <div class="auto-form-wrapper" style="padding: 20px;">
-        <h1>Log In</h1>
+        <h1 style="text-align: center;"><strong>Log In</strong></h1>
         <% if flash[:failmsg].present? %>
-          <div class="alert alert-warning">
+          <div class="alert alert-danger">
             <%= flash[:failmsg] %>
           </div>
         <% end %>
@@ -16,7 +16,7 @@
           <span style="display: inline-block;"> <%= label_tag :password %> </span>
           <%= password_field_tag :password, nil, class:'form-control'%>
           <p>
-            <p><%= submit_tag 'Sign in', :class => "btn pale-button btn-lg btn-block login-button" %></p>
+            <p><%= submit_tag 'Sign in', :class => "btn btn-lg btn-primary login-button" %></p>
           <% end %>
           <a class="panel-footer" href="/users/new">New to codeTears? &nbsp;<span>Sign Up</span></a>
           <%# Not a user?<%= link_to 'Sign up', new_user_path, :class => 'nav-link active' %>

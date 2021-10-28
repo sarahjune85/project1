@@ -29,17 +29,19 @@
     <div class="grid-list-cards">
       <div class="card-header-mint"><%= link_to list.name.truncate(20), list %></div>
       <div class="list-card-body">
-        <p style="height: 2.5rem;"><strong>Description: </strong><%= list.description.truncate(120) %></p>
-        <p></p>
-        <p class="card-timestamp">
-          <strong>Snippets: </strong><%= list.snippets.count %> <br>
-          <strong>Created: </strong><%= list.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></p>
+        <p style="height: 2.5rem; font-size: clamp(0.9rem, 0.5vw, 2rem);"><strong>Description: </strong><%= list.description.truncate(120) %></p>
       </div>
-      <div class="list-card-btns">
-        <div class="list-card-btn-group" role="group">
-          <%= link_to 'Open', list, :class =>"btn card-links"%>
-          <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class =>"btn card-links"%>
-          <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure? This will remove all snippets inside!' }, :class => "btn card-links"%>
+      <div class="row list-row">
+        <div class="card-timestamp col-sm-6 justify-content-start">
+          <strong>Snippets: </strong><%= list.snippets.count %> <br>
+          <strong>Created: </strong><%= list.created_at.strftime(" %m/%d/%Y at %H:%M  ") %>
+        </div>
+        <div class="list-card-btns col-sm-6">
+          <div class="">
+            <%= link_to 'Open', list, :class =>"btn card-links"%>
+            <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class =>"btn card-links"%>
+            <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure? This will remove all snippets inside!' }, :class => "btn card-links"%>
+          </div>
         </div>
       </div>
     </div>

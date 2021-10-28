@@ -23,6 +23,10 @@ $a-tags-hover: "a:active, a:hover";
   font-family: "Mukta", sans-serif;
 }
 
+body {
+  background-color: #232931;
+}
+
 .btn-primary {
   @include button-variant(
     $mint-color,
@@ -32,6 +36,11 @@ $a-tags-hover: "a:active, a:hover";
     lighten($mint-color, 10%),
     darken($mint-color, 30%)
   );
+  color: rgb(0, 0, 0);
+}
+
+.btn-primary:hover {
+  color: rgba(255, 255, 255, 0.685);
 }
 
 .btn-outline-primary {
@@ -149,7 +158,6 @@ $a-tags-hover: "a:active, a:hover";
 .login-container {
   position: relative;
   height: 100%;
-  text-align: center;
   padding-top: 60px;
 }
 
@@ -191,6 +199,7 @@ $a-tags-hover: "a:active, a:hover";
   display: block;
   font-size: 17px;
   color: #4a5568;
+  text-align: center;
 }
 .panel-footer {
   padding: 10px 15px;
@@ -343,6 +352,15 @@ $a-tags-hover: "a:active, a:hover";
   position: absolute;
   bottom: -1rem;
   right: 1rem;
+}
+
+.list-row {
+  width: 100%;
+  position: relative;
+  top: 2rem;
+  display: flex;
+  align-items: center;
+  left: 12px;
 }
 
 .grid-cards-parent,
