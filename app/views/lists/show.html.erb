@@ -27,6 +27,9 @@
 <div class="container flex-column" style="margin-top: 20px;">
   <% if @list.snippets.empty? %>
     <div class="empty" style="padding-top: 20px;">
+      <br>
+      <h3><strong>No lists found.</strong></h3>
+      <br>
       <%= link_to image_tag('void.png', :class => 'empty-img'), new_list_snippet_path(@list.id) %>
     </div>
   <% end %>

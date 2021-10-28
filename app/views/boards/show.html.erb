@@ -23,6 +23,14 @@
     <%= notice %>
   </div>
 <% end %>
+<% if @board.lists.empty? %>
+  <div class="empty" style="padding-top: 20px;">
+    <br>
+    <h3><strong>No lists found.</strong></h3>
+    <br>
+    <%= link_to image_tag('void.png', :class => 'empty-img'), new_board_list_path(@board.id) %>
+  </div>
+<% end %>
 <!----------- Responsive Grid - REUSE ME PLEASE ----------->
 <div class="grid-lists-parent">
   <% @board.lists.each do |list| %>
