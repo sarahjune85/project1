@@ -24,7 +24,7 @@ gem 'pry-rails'
 gem 'bootstrap', '~> 5.1.0'
 gem 'jquery-rails'
 gem 'acts_as_list'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'i18n'
 
 
