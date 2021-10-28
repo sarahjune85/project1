@@ -4,7 +4,7 @@
 
 Record your small code victories - save the snippets that once brought you to tears.
 
-> [_Live demo_](https://stop-crying-its-just-code.herokuapp.com/)
+[_Live demo_](https://stop-crying-its-just-code.herokuapp.com/)
 
 ## General Information
 
@@ -16,8 +16,6 @@ My app allows you to organise by boards, lists & add small code blocks in almost
 Your snippet will display the troublesome block for you with syntax highlighting. Delightful.
 
 It uses nested models to display language boards, their lists, and their snippets.
-
-
 
 # Usage
 
@@ -37,27 +35,25 @@ It uses nested models to display language boards, their lists, and their snippet
 4. Paste your code block as-is into the code block field and it will be formatted after save.
    Snippets can be "pinned" by checking the box on creation or edit. This will save them to the "Pinned Snippets" list for quick retrieval (top menu).
 
-## Gems Used
+# Gems Used
 
 - [bcrypt](https://github.com/bcrypt-ruby/bcrypt-ruby) for password authentication
 - [acts_as_list](https://github.com/brendon/acts_as_list) for sorting items
 
-## Other things I used
+# Other things I used
 
 - [Bootstrap](https://getbootstrap.com/) for some styling
 - [Highlight.js](https://highlight.js.org) for syntax highlighting
 - [Stimulus](https://stimulus.hotwired.dev/) for some not-quite-implemented yet geolocation with js.
 
-## Room for Improvement
+# Things I didn't get around to
 
-- Image upload in the works, eventually...
+- Image upload
 - Geolocation to pick up the weather, for funsies. Currently just a stupid creepy easter egg on the footer.
 - Draggable elements for sorting.
 - Top menu hamburger nav is busted, amongst other CSS woes.
 
-## Acknowledgements
-
-Many thanks to...
+# Many thanks to...
 
 - Our wonderful & patient TAs, Pat & Rowena. 🙌
 - Our wonderful & slightly less patient instructor, Joel. 🐈
