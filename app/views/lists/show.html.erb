@@ -8,13 +8,13 @@
   <div class="container flex-column p-2 top-menu">
     <div class="row">
       <div class="col-8" style="padding-left: 30px; padding-top: 10px;">
-        <h3><span class="text-muted">snippets for list: </span><%= @list.name %></h3>
+        <h3><strong><span class="text-muted">snippets for list: </span><%= @list.name %></strong></h3>
         <p style="font-style: italic;">
           <%= @list.description.truncate(80) %>
         </p>
       </div>
       <div class="col list-topbar-menu" style="text-align: center;">
-        <h3><span class="text-muted">On board:</span> <%=@list.board.name %></span></h3>
+        <h3><strong><span class="text-muted">On board:</span> <%=@list.board.name %></span></strong></h3>
       <div class="row mx-auto">
         <div class="bottom-toolbar">
           <%= link_to 'New Snippet', new_list_snippet_path(@list.id), :class =>"btn card-links top-menu-btn bottom-toolbar" %>
@@ -30,62 +30,25 @@
       <%= link_to image_tag('void.png', :class => 'empty-img'), new_list_snippet_path(@list.id) %>
     </div>
   <% end %>
-  <% @list.snippets.in_groups_of(3, false).each do |group| %>
-    <div class="row offset-sm-0"  style="margin-right: 0px;">
-      <% group.each do |snippet| %>
-        <div class="col-sm">
-          <div class="card text-dark mb-3">
-            <div class="card-header h3 card-heading text-center"><%= snippet.title.truncate(27) %></div>
-            <div class="card-body flex-column">
-              <p><%= snippet.description.truncate(35) %></p>
-              <div class="container w-60">
-                <pre style="overflow: hidden;"><code class="mini-code-block"><%= snippet.code_block.truncate(20) %></code></pre>
-              </div>
-            </div>
-            <div class="snippet-footer">
-              <p><strong>Created: </strong><%= localize(snippet.created_at, :format => :long) %></p>
-              <div class="btn-group btn-group-sm" role="group">
-                <%= link_to 'Show', list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
-                <%= link_to 'Edit', edit_list_snippet_path(@list, snippet.id), :class =>"btn card-links"%>
-                <%= link_to 'Delete', list_snippet_path(@list, snippet), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <% (3 - group.length).times.each do |fake_div| %>
-        <div class="col-sm">
-          <div class="card text-dark bg-light mb-3 text-center">
-            <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
-              <br>
-              <br>
-              <br>
-              <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_list_snippet_path(@list.id) %></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-<!------ PINNED LOGIC - Responsive Grid - REUSE ME PLEASE -------->
-<div class="grid-cards-parent">
-  <% @list.snippets.each do |snip| %>
-    <div class="grid-card">
-      <div class="card-header-mint"><%= link_to snip.title.truncate(20), list_snippet_path(snip.list_id, snip.id) %></div>
-      <p class="card-description"><%= snip.description.truncate(35) %></p>
-      <p>
-        <pre><code class="mini-code-block container w-60"><%= snip.code_block.truncate(60) %></code></pre>
-      </p>
-      <div class="snippet-footer">
+  <!------------------- Responsive Grid - REUSE ME PLEASE ----------->
+  <div class="grid-cards-parent">
+    <% @list.snippets.each do |snip| %>
+      <div class="grid-snip-cards">
+        <div class="card-header-mint"><%= link_to snip.title.truncate(20), list_snippet_path(snip.list_id, snip.id) %></div>
+        <p class="snip-description"><%= snip.description.truncate(35) %></p>
+        <p>
+          <pre><code class="mini-code-block container w-60"><%= snip.code_block.truncate(60) %></code></pre>
+        </p>
         <span class="card-timestamp"><strong>Created: </strong><%= snip.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></span>
-        <div class="btn-group btn-group-sm justify-content-end" role="group">
-          <%= link_to 'Show', list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
-          <%= link_to 'Edit', edit_list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
-          <%= link_to 'Delete', list_snippet_path(@list, snip), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+        <div class="snippet-card-btns">
+          <div class="btn-group btn-group-sm snippet-card-btn-group" role="group">
+            <%= link_to 'Show', list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
+            <%= link_to 'Edit', edit_list_snippet_path(@list, snip.id), :class =>"btn card-links"%>
+            <%= link_to 'Delete', list_snippet_path(@list, snip), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+  <!----------------- Responsive Grid - END ----------------------->
 </div>

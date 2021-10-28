@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-8" style="padding-left: 30px;">
         <div class="heading-snippet">
-          <h1>Pinned snippets</h1>
+          <h1><strong>Pinned snippets</strong></h1>
         </div>
       </div>
-      <div class="col top-menu-btns">
+      <div class="col" style="text-align: end; padding-top: 1%;">
         <div class="row mx-auto">
-          <div class="top-menu-btns">
-            <%= link_to 'Back to all boards', dashboard_path, :class =>"btn card-links" %>
+          <div class="bottom-toolbar">
+            <%= link_to 'Back to dashboard', dashboard_path, :class =>"btn card-links top-menu-btn" %>
           </div>
         </div>
       </div>
@@ -19,15 +19,22 @@
   <div class="grid-cards-parent">
     <% @snippets.each do |snip| %>
       <% if snip.pinned? %>
-        <div class="grid-card">
+        <div class="grid-snip-cards">
           <div class="card-header-mint"><%= link_to snip.title.truncate(20), list_snippet_path(snip.list_id, snip.id) %></div>
-          <p class="card-description"><%= snip.description.truncate(35) %></p>
+          <p class="snip-description"><%= snip.description.truncate(35) %></p>
           <p>
-            <pre><code class="mini-code-block"><%= snip.code_block.truncate(100) %></code></pre>
+            <pre><code class="mini-code-block container w-60"><%= snip.code_block.truncate(60) %></code></pre>
           </p>
-          <p class="card-timestamp"><strong>Created: </strong><%= snip.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></p>
+          <span class="card-timestamp"><strong>Created: </strong><%= snip.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></span>
+          <div class="snippet-card-btns">
+            <div class="btn-group btn-group-sm snippet-card-btn-group" role="group">
+              <%= link_to 'Show', list_snippet_path(snip.list_id, snip.id), :class =>"btn card-links"%>
+              <%= link_to 'Edit', edit_list_snippet_path(snip.list_id, snip.id), :class =>"btn card-links"%>
+              <%= link_to 'Delete', list_snippet_path(snip.list_id, snip), method: :delete, data: { confirm: 'Are you sure? This will remove the snippet!' }, :class => "btn card-links"%>
+            </div>
+          </div>
         </div>
-      <% end%>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -23,39 +23,27 @@
     <%= notice %>
   </div>
 <% end %>
-<div class="container-fluid flex-column" style="margin-top: 20px;">
-  <% if @board.lists.empty? %>
-    <div class="empty" style="padding-top: 20px;">
-      <%= link_to image_tag('void.png', :class => 'empty-img'), new_board_list_path(@board.id) %>
-    </div>
-  <% end %>
-  <% @board.lists.in_groups_of(2, false).each do |group| %>
-    <div class="row" style="flex-wrap: wrap;">
-      <% group.each do |list| %>
-        <div class="col-md list-box">
-          <div class="card text-dark">
-            <div class="card-body flex-column" style="height: 10rem;">
-              <h5 class="card-title"><%= list.name %></h5>
-              <p class="card-text"><%= list.description.truncate(100) %></p>
-              <div class="btn-group" role="group">
-                <%= link_to 'Show list', board_list_path(@board.id,list.id), :class =>"btn pale-button list-button" %>
-                <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class => "btn pale-button list-button"  %>
-                <%= link_to 'Delete', board_list_path(@board, list), method: :delete, data: { confirm: 'Are you sure? This will remove all lists inside!' }, :class => "btn pale-button list-button"  %>
-              </div>
-            </div>
-          </div>
+<!----------- Responsive Grid - REUSE ME PLEASE ----------->
+<div class="grid-lists-parent">
+  <% @board.lists.each do |list| %>
+    <div class="grid-list-cards">
+      <div class="card-header-mint"><%= link_to list.name.truncate(20), list %></div>
+      <div class="list-card-body">
+        <p style="height: 2.5rem;"><strong>Description: </strong><%= list.description.truncate(120) %></p>
+        <p></p>
+        <p class="card-timestamp">
+          <strong>Snippets: </strong><%= list.snippets.count %> <br>
+          <strong>Created: </strong><%= list.created_at.strftime(" %m/%d/%Y at %H:%M  ") %></p>
+      </div>
+      <div class="list-card-btns">
+        <div class="list-card-btn-group" role="group">
+          <%= link_to 'Open', list, :class =>"btn card-links"%>
+          <%= link_to 'Edit', edit_board_list_path(@board.id,list.id), :class =>"btn card-links"%>
+          <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure? This will remove all snippets inside!' }, :class => "btn card-links"%>
         </div>
-      <% end %>
-      <% (2 - group.length).times.each do |fake_div| %>
-        <div class="col-md list-box">
-          <div class="card text-dark text-center">
-            <div class="card-body flex-column" style='background-color: #d9dbdd; color: #fff;'>
-              <p><%= link_to image_tag("tear.png", :class => 'dash-item'), new_board_list_path(@board.id) %></p>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      </div>
     </div>
   <% end %>
 </div>
+<!----------------- Responsive Grid - END ---------------->
 </div>

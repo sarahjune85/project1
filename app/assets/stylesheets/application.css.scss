@@ -58,7 +58,6 @@ $a-tags-hover: "a:active, a:hover";
   font-weight: 400;
 }
 
-/* delete */
 .card-body {
   background-color: #eeeeee;
   color: #232931;
@@ -77,7 +76,6 @@ $a-tags-hover: "a:active, a:hover";
 .main-box {
   max-width: 990px;
   display: grid;
-  // width: 990px;
   margin-top: 30px;
   background-color: #d9dbdd;
   border-radius: 15px;
@@ -267,10 +265,32 @@ $a-tags-hover: "a:active, a:hover";
   font-weight: bold;
 }
 
+@media (min-width: 700px) {
+  .card-header-mint {
+    font-size: 1rem;
+  }
+}
+
 .card-description {
   background-color: #eeeeeead;
   padding: 0.5rem 1rem;
   font-size: calc(0.6rem + 2.9 * ((100vw - 320px) / 680));
+}
+
+.snip-description {
+  height: 36px;
+  margin-bottom: 0px;
+  padding: 5px 0px 0px 15px;
+}
+
+.snippet-card-btns {
+  position: relative;
+}
+
+.snippet-card-btn-group {
+  position: absolute;
+  bottom: -3rem;
+  right: 1rem;
 }
 
 .mini-code-block {
@@ -286,10 +306,11 @@ $a-tags-hover: "a:active, a:hover";
 }
 
 .grid-card,
-.grid-card-board {
+.grid-card-board,
+.grid-list-cards,
+.grid-snip-cards {
   background-color: #eeeeeed2;
   color: #232931;
-  // padding: 1rem;
   height: 14rem;
   border-radius: 12px;
 }
@@ -299,7 +320,33 @@ $a-tags-hover: "a:active, a:hover";
   text-align: center;
 }
 
-.grid-cards-parent {
+.grid-list-cards {
+  height: 12.5rem;
+  text-align: right;
+}
+
+.grid-snip-cards {
+  height: 17.5rem;
+}
+
+.list-card-body {
+  text-align: left;
+  padding: 1rem 1rem 0rem 1rem;
+  font-size: calc(0.6rem + 1.5 * ((100vw - 320px) / 680));
+}
+
+.list-card-btns {
+  position: relative;
+}
+
+.list-card-btn-group {
+  position: absolute;
+  bottom: -1rem;
+  right: 1rem;
+}
+
+.grid-cards-parent,
+.grid-lists-parent {
   padding-top: 1.2rem;
   max-width: 1200px;
   display: grid;
@@ -318,9 +365,13 @@ $a-tags-hover: "a:active, a:hover";
   .grid-cards-parent {
     grid-template-columns: repeat(3, 1fr);
   }
+  .grid-lists-parent {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 pre {
   display: grid;
   overflow: hidden;
+  margin: 0px 15px 0px;
 }

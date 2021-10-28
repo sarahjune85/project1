@@ -14,10 +14,10 @@
       <% else %>
         <h1><strong>New Snippet</strong></h1>
       <% end %>
-      <h4><span class="text-muted">On list: </span><%= @list.name %></h4>
+      <h4><strong><span class="text-muted">On list: </span><%= @list.name %></strong></h4>
     </div>
     <div class="col top-menu-btns">
-      <h3><span class="text-muted">Board:</span> <%=@list.board.name %></span></h3>
+      <h3><strong><span class="text-muted">Board:</span> <%=@list.board.name %></span></strong></h3>
     <div class="row mx-auto">
       <div class="bottom-toolbar">
         <% if @snippet.id.present? %>
