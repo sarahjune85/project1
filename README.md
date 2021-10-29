@@ -22,8 +22,8 @@ It uses nested models to display language boards, their lists, and their snippet
 1. Create a user account with a name, email, and password.  
    Login with your credentials, or use mine if you _really_ cannot be bothered:
 
-> **sarah@cats.com**  
-> **chicken**
+> `sarah@cats.com`  
+> `chicken`
 
 2. After login, click the void to create a board (_it is entirely safe, pinky promise)._  
    If you remain unconvinced, click "New board" on the top menu nav.
