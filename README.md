@@ -10,7 +10,7 @@ Record your small code victories - save the snippets that once brought you to te
 
 This project is a Ruby on Rails CRUD app created for General Assembly's software engineering immersive.
 
-I have often wished for a light-hearted little code snippet app to record all the lines that brought me to tears (of frustration, anger, less often joy), so I decided to build one for my second GA project.
+I have often wished for a light-hearted little code snippet app to record all the lines that brought me to tears (of frustration, anger..and less often, joy) - so I decided to build one for my second GA project.
 
 My app allows you to organise by boards, lists & add small code blocks in almost any language *(at least - if highlight.js supports it, and if it doesn't...hats off to you for using something *that* obscure)*.  
 Your snippet will display the troublesome block for you with syntax highlighting. Delightful.
